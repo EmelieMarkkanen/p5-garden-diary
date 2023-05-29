@@ -1,0 +1,18 @@
+.NavBar {
+    background-color: #F5D0C5;
+}
+
+.NavLink {
+    padding: 5px;
+    color: green;
+}
+
+.Active {
+    color: red;
+}
+
+.Logo {
+    position: absolute;
+    left: 20px;
+    top: 5px;
+}

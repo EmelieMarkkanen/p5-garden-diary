@@ -1,18 +1,23 @@
-import React from 'react'
-import {Navbar, Container, Nav}  from 'react-bootstrap'
-import logo from '../assets/Plant logo small.png'
+import React from 'react';
+import {Navbar, Container, Nav}  from 'react-bootstrap';
+import Image from "react-bootstrap/Image";
+import logo from '../assets/Plant logo small.png';
+import styles from '../styles/NavBar.module.css';
+import {NavLink} from 'react-router-dom';
 
 const NavBar = () => {
     return (
-<Navbar expand="md" fixed='top'>
+<Navbar className={styles.NavBar} expand="md" fixed='top'>
     <Container>
-  <Navbar.Brand><img src={logo} alt='logo' height={45}/></Navbar.Brand>
+      <NavLink to='/'>
+  <Navbar.Brand><Image src={logo} roundedCircle alt='logo' height={75} className={styles.Logo}/>
+  </Navbar.Brand></NavLink>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#home">Home</Nav.Link>
-      <Nav.Link href="#link">Sign in</Nav.Link>
-      <Nav.Link href="#link">Sign up</Nav.Link>
+    <Nav className="ml-auto">
+      <NavLink exact className={styles.NavLink} activeClassName={styles.Active} to='/'>Home</NavLink>
+      <NavLink className={styles.NavLink} activeClassName={styles.Active} to='/signin'>Sign in</NavLink>
+      <NavLink className={styles.NavLink} activeClassName={styles.Active} to='/signup'>Sign up</NavLink>
     </Nav>
   </Navbar.Collapse>
   </Container>

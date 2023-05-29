@@ -1,0 +1,12 @@
+a {
+    transition: color ease-in-out 0.3s;
+  }
+  
+  a:hover {
+    text-decoration: none;
+    color: red;
+  }
+
+  .Main {
+    padding-top: 85px;
+  }
