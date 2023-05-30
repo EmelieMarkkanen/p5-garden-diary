@@ -10,7 +10,7 @@ const NavBar = () => {
 <Navbar className={styles.NavBar} expand="md" fixed='top'>
     <Container>
       <NavLink to='/'>
-  <Navbar.Brand><Image src={logo} roundedCircle alt='logo' height={75} className={styles.Logo}/>
+  <Navbar.Brand><Image src={logo} roundedCircle alt='logo' height={45} className={styles.Logo}/>
   </Navbar.Brand></NavLink>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">

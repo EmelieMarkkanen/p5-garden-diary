@@ -4,15 +4,15 @@
 
 .NavLink {
     padding: 5px;
-    color: green;
+    color: #B3D274;
 }
 
 .Active {
-    color: red;
+    color: green;
 }
 
 .Logo {
     position: absolute;
     left: 20px;
-    top: 5px;
+    top: 3px;
 }
