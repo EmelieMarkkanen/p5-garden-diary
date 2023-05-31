@@ -62,7 +62,7 @@ const NavBar = () => {
       className={styles.NavLink}
       activeClassName={styles.Active}
       to="/liked"
-    >Liked
+    >Liked entries
     </NavLink>
     <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>Sign out
     </NavLink>
