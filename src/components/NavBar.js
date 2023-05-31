@@ -29,7 +29,7 @@ const NavBar = () => {
       className={styles.NavLink}
       activeClassName={styles.Active}
       to="/posts/create"
-    >Add post
+    >Add a diary entry
     </NavLink>
   );
 
