@@ -11,21 +11,22 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import styles from "../../styles/Cards.module.css";
-import PlantCard from "../../components/PlantCard";
+import TaskCard from "../../components/TaskCard";
 import btnStyles from "../../styles/Button.module.css";
 import { Link } from "react-router-dom";
+import appStyles from "../../App.module.css";
 
-function PlantsPage({ message, filter = "" }) {
-    const [plants, setPlants] = useState({ results: [] });
+function TasksPage({ message, filter = "" }) {
+    const [tasks, setTasks] = useState({ results: [] });
     const [hasLoaded, setHasLoaded] = useState(false);
     const { pathname } = useLocation();
     const [query, setQuery] = useState("");
 
     useEffect(() => {
-        const fetchPlants = async () => {
+        const fetchTasks = async () => {
             try {
-                const { data } = await axiosReq.get(`/plants/?${filter}search=${query}`);
-                setPlants(data);
+                const { data } = await axiosReq.get(`/tasks/?${filter}search=${query}`);
+                setTasks(data);
                 setHasLoaded(true);
             } catch (err) {
                 console.log(err);
@@ -34,7 +35,7 @@ function PlantsPage({ message, filter = "" }) {
 
         setHasLoaded(false);
         const timer = setTimeout(() => {
-            fetchPlants();
+            fetchTasks();
         }, 1000);
 
         return () => {
@@ -54,36 +55,36 @@ function PlantsPage({ message, filter = "" }) {
                         onChange={(event) => setQuery(event.target.value)}
                         type="text"
                         className="mr-sm-2"
-                        placeholder="Search plants"
+                        placeholder="Search tasks"
                     />
                 </Form>
 
-                <Link to="/plants/create">
+                <Link to="/tasks/create">
                     <Button className={`${btnStyles.Button} ${btnStyles.Blue}`}>
-                        Add a plant
+                        Add a task
                     </Button>
                 </Link>
 
                 {hasLoaded ? (
                     <>
-                        {plants.results.length ? (
+                        {tasks.results.length ? (
                             <InfiniteScroll
-                                dataLength={plants.results.length}
-                                next={() => fetchMoreData(plants, setPlants)}
-                                hasMore={!!plants.next}
+                                dataLength={tasks.results.length}
+                                next={() => fetchMoreData(tasks, setTasks)}
+                                hasMore={!!tasks.next}
                                 loader={<Asset spinner />}
                                 scrollThreshold="100px"
                             >
                                 <div className={styles.CardGrid}>
-                                    {plants.results.map((plant) => (
-                                        <PlantCard key={plant.id} plant={plant} />
+                                    {tasks.results.map((task) => (
+                                        <TaskCard key={task.id} task={task} />
                                     ))}
                                 </div>
                             </InfiniteScroll>
                         ) : (
-                            <Container>
-                                <Asset src={NoResults} message={message} />
-                            </Container>
+                            <Container className={appStyles.Content}>
+                            <Asset src={NoResults} message={message} />
+                          </Container>
                         )}
                     </>
                 ) : (
@@ -96,4 +97,4 @@ function PlantsPage({ message, filter = "" }) {
     );
 }
 
-export default PlantsPage;
+export default TasksPage;

@@ -10,7 +10,8 @@ import PostPage from "./pages/posts/PostPage";
 import PostsPage from "./pages/posts/PostsPage";
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PlantCreateForm from "./pages/plants/PlantCreateForm";
-import PlantsPage from "./pages/plants/Plantspage";
+import PlantsPage from "./pages/plants/PlantsPage";
+import TasksPage from "./pages/tasks/TasksPage";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -53,7 +54,10 @@ function App() {
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
-          <Route exact path="/plants" render={() => <PlantsPage />} />
+          <Route exact path="/plants" render={() => <PlantsPage 
+          message="No results found. Adjust the search keyword add a plant."/>} />
+          <Route exact path="/tasks" render={() => <TasksPage
+          message="No results found. Adjust the search keyword add a task." />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
