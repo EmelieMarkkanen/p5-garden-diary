@@ -34,11 +34,29 @@ const NavBar = () => {
   );
 
   const loggedInIcons = <>
+      <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/shoppinglist"
+    >Shoppinglists
+    </NavLink>
     <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/feed"
-    >Followed
+      to="/tasks"
+    >To-do list
+    </NavLink>
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/plants"
+    >My plants
+    </NavLink>
+    <NavLink
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/following"
+    >Following
     </NavLink>
     <NavLink
       className={styles.NavLink}
@@ -90,14 +108,6 @@ const NavBar = () => {
           aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
-            <NavLink
-              exact
-              className={styles.NavLink}
-              activeClassName={styles.Active}
-              to="/"
-            >Home
-            </NavLink>
-
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>
