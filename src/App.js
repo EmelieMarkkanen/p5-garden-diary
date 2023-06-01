@@ -12,6 +12,7 @@ import { useCurrentUser } from "./contexts/CurrentUserContext";
 import PlantCreateForm from "./pages/plants/PlantCreateForm";
 import PlantsPage from "./pages/plants/PlantsPage";
 import TasksPage from "./pages/tasks/TasksPage";
+import PostEditForm from "./pages/posts/PostEditForm";
 
 function App() {
   const currentUser = useCurrentUser();
@@ -53,6 +54,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
+          <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants" render={() => <PlantsPage 
           message="No results found. Adjust the search keyword add a plant."/>} />
