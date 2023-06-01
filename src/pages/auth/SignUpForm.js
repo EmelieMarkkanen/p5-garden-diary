@@ -1,38 +1,51 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { Form, Button, Image, Col, Row, Container, Alert } from "react-bootstrap";
+import axios from "axios";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
-import {
-  Form, Button, Image, Col, Row, Container, Alert,
-} from "react-bootstrap";
-import axios from "axios";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
+    profileImage: null,
   });
   const { username, password1, password2 } = signUpData;
+
+  const [selectedImageName, setSelectedImageName] = useState("");
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
-  const handleChange = (event) => {
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
     setSignUpData({
       ...signUpData,
-      [event.target.name]: event.target.value,
+      profileImage: file,
     });
+    setSelectedImageName(file.name);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password1", password1);
+    formData.append("password2", password2);
+    formData.append("profileImage", signUpData.profileImage);
+
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
+      await axios.post("/dj-rest-auth/registration/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
       history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
@@ -43,18 +56,23 @@ const SignUpForm = () => {
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
-          <h1 className={styles.Header}>sign up with Garden Diaries</h1>
+          <h1 className={styles.Header}>Sign up with Garden Diaries</h1>
 
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
-              <Form.Label className="d-none">username</Form.Label>
+              <Form.Label className="d-none">Username</Form.Label>
               <Form.Control
                 className={styles.Input}
                 type="text"
                 placeholder="Choose a username"
                 name="username"
                 value={username}
-                onChange={handleChange}
+                onChange={(event) =>
+                  setSignUpData({
+                    ...signUpData,
+                    username: event.target.value,
+                  })
+                }
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
@@ -71,7 +89,12 @@ const SignUpForm = () => {
                 placeholder="Choose a password"
                 name="password1"
                 value={password1}
-                onChange={handleChange}
+                onChange={(event) =>
+                  setSignUpData({
+                    ...signUpData,
+                    password1: event.target.value,
+                  })
+                }
               />
             </Form.Group>
             {errors.password1?.map((message, idx) => (
@@ -88,7 +111,12 @@ const SignUpForm = () => {
                 placeholder="Confirm password"
                 name="password2"
                 value={password2}
-                onChange={handleChange}
+                onChange={(event) =>
+                  setSignUpData({
+                    ...signUpData,
+                    password2: event.target.value,
+                  })
+                }
               />
             </Form.Group>
             {errors.password2?.map((message, idx) => (
@@ -96,6 +124,19 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
+            
+            <Form.Group className="text-center" controlId="profileImage">
+              <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
+                <Form.Label>Choose a profile Image</Form.Label>
+              </Button>
+              <Form.Control
+                type="file"
+                name="profileImage"
+                onChange={handleImageChange}
+              />
+              {selectedImageName && <p>{selectedImageName}</p>}
+            </Form.Group>
+            
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
@@ -103,6 +144,7 @@ const SignUpForm = () => {
             >
               Sign up
             </Button>
+
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
                 {message}
@@ -123,7 +165,7 @@ const SignUpForm = () => {
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://res.cloudinary.com/dbgnna5vv/image/upload/v1685186160/media/images/default_upload_zxqesj.jpg"}
+          src="https://res.cloudinary.com/dbgnna5vv/image/upload/v1685186160/media/images/default_upload_zxqesj.jpg"
         />
       </Col>
     </Row>
