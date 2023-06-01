@@ -2,9 +2,10 @@ import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
+import { MoreDropdown } from "../../components/MoreDropdown";
 
 const Post = (props) => {
   const {
@@ -25,6 +26,22 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const history = useHistory();
+
+  const handleEdit = () => {
+    history.push(`/posts/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    const confirmed = window.confirm("Are you sure you want to delete this diary entry?");
+    if (confirmed) {
+      try {
+        await axiosRes.delete(`/posts/${id}/`);
+        history.goBack();
+      } catch (err) {
+      }
+    }
+  };
 
   const handleLike = async () => {
     try {
@@ -67,8 +84,13 @@ const Post = (props) => {
             {owner}
           </Link>
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
-            {is_owner && postPage && "..."}
+            
+            {is_owner && postPage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </div>
         </Media>
       </Card.Body>
@@ -77,6 +99,7 @@ const Post = (props) => {
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
+        <span>{updated_at}</span>
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           {is_owner ? (
@@ -84,22 +107,22 @@ const Post = (props) => {
               placement="top"
               overlay={<Tooltip>You can't like your own post!</Tooltip>}
             >
-              <i className="fa-sharp fa-regular fa-heart" />
+              <i className="far fa-heart" />
             </OverlayTrigger>
           ) : like_id ? (
             <span onClick={handleUnlike}>
-              <i className={`fa-solid fa-heart-circle-check ${styles.Heart}`} />
+              <i className={`fas fa-heart ${styles.Heart}`} />
             </span>
           ) : currentUser ? (
             <span onClick={handleLike}>
-              <i className={`fa-sharp fa-regular fa-heart ${styles.HeartOutline}`} />
+              <i className={`far fa-heart ${styles.HeartOutline}`} />
             </span>
           ) : (
             <OverlayTrigger
               placement="top"
               overlay={<Tooltip>Log in to like posts!</Tooltip>}
             >
-              <i className="fa-sharp fa-regular fa-heart" />
+              <i className="far fa-heart" />
             </OverlayTrigger>
           )}
           {likes_count}
