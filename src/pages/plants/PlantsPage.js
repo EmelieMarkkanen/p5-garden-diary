@@ -26,15 +26,17 @@ function PlantsPage({ message, filter = "" }) {
 
   useEffect(() => {
     const fetchPlants = async () => {
-      try {
-        const { data } = await axiosReq.get(`/plants/?${filter}search=${query}`);
-        const filteredPlants = data.results.filter(plant => plant.author === currentUser.id);
-        setPlants({ results: filteredPlants });
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
+        try {
+          const { data } = await axiosReq.get(`/plants/?${filter}&search=${query}`);
+          const filteredPlants = data.results.filter((plant) =>
+            plant.name.toLowerCase().includes(query.toLowerCase())
+          );
+          setPlants({ results: filteredPlants });
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
