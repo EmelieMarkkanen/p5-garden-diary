@@ -7,22 +7,26 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 
+import { useRedirect } from "../../hooks/useRedirect";
+
 const SignUpForm = () => {
+  useRedirect("loggedIn");
+
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
     password2: "",
-    profileImage: null,
+    /*profileImage: null,*/
   });
   const { username, password1, password2 } = signUpData;
 
-  const [selectedImageName, setSelectedImageName] = useState("");
+  /* const [selectedImageName, setSelectedImageName] = useState("");*/
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
 
-  const handleImageChange = (event) => {
+  /*const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSignUpData({
       ...signUpData,
@@ -30,28 +34,39 @@ const SignUpForm = () => {
     });
     setSelectedImageName(file.name);
   };
+<Form.Group className="text-center" controlId="profileImage">
+<Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
+<Form.Label>Choose a profile Image</Form.Label>
+</Button>
+<Form.Control
+type="file"
+name="profileImage"
+onChange={handleImageChange}
+/>
+{selectedImageName && <p>{selectedImageName}</p>}
+</Form.Group>
+  */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password1", password1);
     formData.append("password2", password2);
-    formData.append("profileImage", signUpData.profileImage);
-  
+    /*formData.append("profileImage", signUpData.profileImage);*/
+
     try {
       await axios.post("dj-rest-auth/registration/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      });
-      history.push("/signin");
+      }); history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
     }
   };
-  
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
@@ -124,19 +139,6 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
-            
-            <Form.Group className="text-center" controlId="profileImage">
-              <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
-                <Form.Label>Choose a profile Image</Form.Label>
-              </Button>
-              <Form.Control
-                type="file"
-                name="profileImage"
-                onChange={handleImageChange}
-              />
-              {selectedImageName && <p>{selectedImageName}</p>}
-            </Form.Group>
-            
 
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
