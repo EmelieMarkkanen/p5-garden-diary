@@ -80,14 +80,18 @@ function App() {
           <Route
             exact
             path="/plants"
-            render={() => (
+            render={() =>
               <PlantsPage
                 message="No results found. Adjust the search keyword or add a plant."
+                filter={currentUser}
               />
-            )}
+            }
           />
           <Route exact path="/tasks" render={() => <TasksPage
-            message="No results found. Adjust the search keyword add a task." />} />
+            message="No results found. Adjust the search keyword add a task."
+            filter={currentUser} 
+            />} 
+            />
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>
