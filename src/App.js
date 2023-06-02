@@ -77,10 +77,17 @@ function App() {
             render={() => <ProfileEditForm />}
           />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
-          <Route exact path="/plants" render={() => <PlantsPage 
-          message="No results found. Adjust the search keyword add a plant."/>} />
+          <Route
+            exact
+            path="/plants"
+            render={() => (
+              <PlantsPage
+                message="No results found. Adjust the search keyword or add a plant."
+              />
+            )}
+          />
           <Route exact path="/tasks" render={() => <TasksPage
-          message="No results found. Adjust the search keyword add a task." />} />
+            message="No results found. Adjust the search keyword add a task." />} />
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>
