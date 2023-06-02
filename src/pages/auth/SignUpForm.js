@@ -33,15 +33,15 @@ const SignUpForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     const formData = new FormData();
     formData.append("username", username);
     formData.append("password1", password1);
     formData.append("password2", password2);
     formData.append("profileImage", signUpData.profileImage);
-
+  
     try {
-      await axios.post("/dj-rest-auth/registration/", formData, {
+      await axios.post("dj-rest-auth/registration/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -51,7 +51,7 @@ const SignUpForm = () => {
       setErrors(err.response?.data);
     }
   };
-
+  
   return (
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2" md={6}>
