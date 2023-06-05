@@ -29,10 +29,10 @@ function PlantEditForm() {
     care_instructions: "",
     image: "",
     type: "unknown",
-    created_at: "",
+    planted_at: "",
   });
 
-  const { name, care_instructions, image, type, created_at } = postData;
+  const { name, care_instructions, image, type, planted_at } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
@@ -41,9 +41,9 @@ function PlantEditForm() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`/plants/${id}/`);
-        const { name, care_instructions, type, image, created_at } = data;
+        const { name, care_instructions, type, image, planted_at } = data;
   
-        setPostData({ name, care_instructions, type, image, created_at });
+        setPostData({ name, care_instructions, type, image, planted_at });
       } catch (error) {
         console.log(error);
       }
@@ -76,7 +76,7 @@ function PlantEditForm() {
         formData.append("name", name);
         formData.append("type", type);
         formData.append("care_instructions", care_instructions);
-        formData.append("created_at", created_at);
+        formData.append("planted_at", planted_at);
         if (imageInput?.current?.files[0]) {
           formData.append("image", imageInput.current.files[0]);
         }
@@ -156,8 +156,8 @@ function PlantEditForm() {
             <Form.Label>Planted</Form.Label>
             <Form.Control
               type="date"
-              name="created_at"
-              value={created_at}
+              name="planted_at"
+              value={planted_at}
               onChange={handleChange}
               min="1990-01-01"
             />

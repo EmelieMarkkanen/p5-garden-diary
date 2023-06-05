@@ -20,6 +20,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import PlantPage from "./pages/plants/PlantPage";
 import PlantEditForm from "./pages/plants/PlantEditForm";
+import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 
 
 function App() {
@@ -97,6 +98,7 @@ function App() {
             filter={currentUser} 
             />} 
             />
+            <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>

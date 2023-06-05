@@ -28,15 +28,15 @@ function PlantCreateForm() {
         name: "",
         care_instructions: "",
         image: "",
-        type: "unknown",
-        created_at: "",
+        plant_type: "unknown",
+        planted_at: "",
     });
     const {
         name,
         care_instructions,
         image,
-        type,
-        created_at,
+        plant_type,
+        planted_at,
     } = postData;
 
     const imageInput = useRef(null);
@@ -64,9 +64,9 @@ function PlantCreateForm() {
         const formData = new FormData();
 
         formData.append("name", name);
-        formData.append("type", type);
+        formData.append("plant_type", plant_type);
         formData.append("care_instructions", care_instructions);
-        formData.append("created_at", created_at);
+        formData.append("planted_at", planted_at);
         formData.append("image", imageInput.current.files[0]);
 
         try {
@@ -102,8 +102,8 @@ function PlantCreateForm() {
             <Form.Control
               as="select"
               type="text"
-              name="type"
-              value={type}
+              name="plant_type"
+              value={plant_type}
               onChange={handleChange}
             >
               <option value="unknown">Chose one</option>
@@ -144,13 +144,13 @@ function PlantCreateForm() {
             <Form.Label>Planted</Form.Label>
             <Form.Control
               type="date"
-              name="created_at"
-              value={created_at}
+              name="planted_at"
+              value={planted_at}
               onChange={handleChange}
               min="1990-01-01"
             />
           </Form.Group>
-          {errors?.created_at?.map((message, idx) => (
+          {errors?.planted_at?.map((message, idx) => (
             <Alert variant="warning" key={idx}>
               {message}
             </Alert>

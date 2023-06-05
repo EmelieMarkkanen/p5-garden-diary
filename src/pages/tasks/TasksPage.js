@@ -29,7 +29,7 @@ function TasksPage({ message, filter = "" }) {
         try {
           const { data } = await axiosReq.get(`/tasks/?${filter}&search=${query}`);
           const filteredTasks = data.results.filter((task) =>
-            task.name.toLowerCase().includes(query.toLowerCase())
+            task.title.toLowerCase().includes(query.toLowerCase())
           );
           setTasks({ results: filteredTasks });
           setHasLoaded(true);
@@ -60,13 +60,13 @@ function TasksPage({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search task"
+            placeholder="Search to-do list"
           />
         </Form>
 
         <Link to="/tasks/create">
           <Button className={`${btnStyles.Button} ${btnStyles.Blue}`}>
-            Add a new task
+            Add a task
           </Button>
         </Link>
 

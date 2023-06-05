@@ -11,7 +11,7 @@ const Plant = (props) => {
         id,
         name,
         image,
-        updated_at,
+        planted_at,
         type,
         care_instructions,
     } = props;
@@ -44,7 +44,7 @@ const Plant = (props) => {
               <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
             </div>
           </div>
-          <span>Planted: {updated_at}</span>
+          <span>Planted: {planted_at}</span>
           {type && <Card.Text className={styles.Type}>{type}</Card.Text>}
           {care_instructions && <Card.Text>{care_instructions}</Card.Text>}
         </Card.Body>

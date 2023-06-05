@@ -21,7 +21,7 @@ function PlantCard({ plant }) {
         </div>
         <Card.Body>
           <Card.Title>{plant.name}</Card.Title>
-          <Card.Text>Planted: {plant.created_at}</Card.Text>
+          <Card.Text>Planted: {plant.planted_at}</Card.Text>
         </Card.Body>
       </Card>
     );
