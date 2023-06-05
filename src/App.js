@@ -19,6 +19,8 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import NotFound from "./components/NotFound";
 import PlantPage from "./pages/plants/PlantPage";
+import PlantEditForm from "./pages/plants/PlantEditForm";
+
 
 function App() {
   const currentUser = useCurrentUser();
@@ -78,6 +80,7 @@ function App() {
             render={() => <ProfileEditForm />}
           />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
+          <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route
             exact
             path="/plants"
