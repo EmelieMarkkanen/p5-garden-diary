@@ -22,6 +22,7 @@ import PlantPage from "./pages/plants/PlantPage";
 import PlantEditForm from "./pages/plants/PlantEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
+import TaskEditForm from "./pages/tasks/TaskEditForm";
 
 
 function App() {
@@ -100,6 +101,7 @@ function App() {
           />}
           />
           <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
+          <Route exact path="/tasks/:id/edit" render={() => <TaskEditForm />} />
           <Route exact path="/tasks/:id" render={() => <TaskPage />} />
           <Route render={() => <NotFound />} />
         </Switch>

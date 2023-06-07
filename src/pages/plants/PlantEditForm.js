@@ -28,7 +28,7 @@ function PlantEditForm() {
     name: "",
     care_instructions: "",
     image: "",
-    type: "unknown",
+    plant_type: "unknown",
     planted_at: "",
   });
 
@@ -41,9 +41,9 @@ function PlantEditForm() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(`/plants/${id}/`);
-        const { name, care_instructions, type, image, planted_at } = data;
+        const { name, care_instructions, plant_type, image, planted_at } = data;
   
-        setPostData({ name, care_instructions, type, image, planted_at });
+        setPostData({ name, care_instructions, plant_type, image, planted_at });
       } catch (error) {
         console.log(error);
       }

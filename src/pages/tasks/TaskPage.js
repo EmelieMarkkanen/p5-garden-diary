@@ -41,6 +41,17 @@ function TaskPage() {
     }
   };
 
+  const taskDone = async () => {
+    const confirmed = window.confirm("Task completed?");
+    if (confirmed) {
+      try {
+        await axiosRes.delete(`/tasks/${id}/`);
+        history.goBack();
+      } catch (err) {
+      }
+    }
+  };
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
@@ -51,6 +62,7 @@ function TaskPage() {
               TaskPage={true}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
+              taskDone={taskDone}
             />
           )}
         </Container>

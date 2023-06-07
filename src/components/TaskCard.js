@@ -2,10 +2,8 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useHistory } from "react-router-dom";
 import styles from "../styles/Cards.module.css"
-//import { useEffect } from "react";
-//import { axiosReq } from "../api/axiosDefaults";
 import OverdueCheck from "../hooks/overdueCheck";
-import { MoreDropdown } from "./MoreDropdown";
+import { axiosRes } from "../api/axiosDefaults";
 
 function TaskCard({ task, setTask }) {
   const history = useHistory();
@@ -20,12 +18,14 @@ function TaskCard({ task, setTask }) {
     const confirmed = window.confirm("Task completed?");
     if (confirmed) {
       try {
-        await axiosRes.delete(`/tasks/${id}/`);
-        history.goBack();
+        await axiosRes.delete(`/tasks/${task.id}/`);
+        history.push('/tasks');
       } catch (err) {
+        console.log(err);
       }
     }
   };
+  
 
   return (
     <Card>
