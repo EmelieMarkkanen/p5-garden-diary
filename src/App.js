@@ -23,6 +23,7 @@ import PlantEditForm from "./pages/plants/PlantEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
+import ShoppingListCreateForm from "./pages/shoppinglists/ShoppinglistCreateForm";
 
 
 function App() {
@@ -82,6 +83,8 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
+          <Route exact path="/shoppinglist/create" render={() => <ShoppingListCreateForm />} />
+
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route
