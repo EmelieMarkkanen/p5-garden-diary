@@ -5,6 +5,7 @@ import styles from "../styles/Cards.module.css"
 //import { useEffect } from "react";
 //import { axiosReq } from "../api/axiosDefaults";
 import OverdueCheck from "../hooks/overdueCheck";
+import { MoreDropdown } from "./MoreDropdown";
 
 function TaskCard({ task, setTask }) {
   const history = useHistory();
@@ -15,25 +16,38 @@ function TaskCard({ task, setTask }) {
 
   OverdueCheck(task, setTask);
 
+  const taskDone = async () => {
+    const confirmed = window.confirm("Task completed?");
+    if (confirmed) {
+      try {
+        await axiosRes.delete(`/tasks/${id}/`);
+        history.goBack();
+      } catch (err) {
+      }
+    }
+  };
+
   return (
-    <Card onClick={handleClick}>
+    <Card>
       <div className={styles.CardImageContainer}>
         {task && task.image && (
           <img
             src={task.image}
             alt={task.title}
             className={styles.CardImage}
+            onClick={handleClick}
           />
         )}
       </div>
       <Card.Body>
-        <Card.Title>
-          {task.title}
+        <Card.Title >{task.overdue ? (
+          <i className="fas fa-exclamation text-danger text-bold"></i>
+        ) : null}{task.title}
         </Card.Title>
         <Card.Text>Added: {task.created_at}</Card.Text>
-        <Card.Text>{task.overdue ? (
-          <i className="fas fa-exclamation text-danger text-bold"></i>
-        ) : null} Due: {task.due_date}</Card.Text>
+        <Card.Text> Due: {task.due_date} <i className="fas fa-check"
+        inTask={true} 
+        onClick={taskDone} /></Card.Text>
       </Card.Body>
     </Card>
   );

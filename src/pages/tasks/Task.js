@@ -36,6 +36,17 @@ const Task = (props) => {
     }
   };
 
+  const taskDone = async () => {
+    const confirmed = window.confirm("Task completed?");
+    if (confirmed) {
+      try {
+        await axiosRes.delete(`/tasks/${id}/`);
+        history.goBack();
+      } catch (err) {
+      }
+    }
+  };
+
   return (
     <Card className={styles.Plant}>
       <Card.Body>
@@ -44,7 +55,10 @@ const Task = (props) => {
             {title && <Card.Title>{title}</Card.Title>}
           </div>
           <div>
-            <MoreDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+            <MoreDropdown handleEdit={handleEdit}
+            handleDelete={handleDelete}
+            inTask={true} 
+            taskDone={taskDone} />
           </div>
         </div>
         <Card.Text>{overdue && (

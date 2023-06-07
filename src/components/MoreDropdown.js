@@ -16,15 +16,21 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
-export const MoreDropdown = ({ handleEdit, handleDelete }) => {
+export const MoreDropdown = ({ handleEdit, handleDelete, inTask, taskDone }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
 
-      <Dropdown.Menu
-        className="text-center"
-        popperConfig={{ strategy: "fixed" }}
-      >
+      <Dropdown.Menu className="text-center" popperConfig={{ strategy: "fixed" }}>
+        {inTask && (
+          <Dropdown.Item
+            className={styles.DropdownItem}
+            onClick={taskDone}
+            aria-label="task done"
+          >
+            <i className="fas fa-check" />
+          </Dropdown.Item>
+        )}
         <Dropdown.Item
           className={styles.DropdownItem}
           onClick={handleEdit}
@@ -43,6 +49,7 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
     </Dropdown>
   );
 };
+
 
 export const ProfileEditDropdown = ({ id }) => {
   const history = useHistory();
