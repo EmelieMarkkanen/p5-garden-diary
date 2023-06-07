@@ -33,6 +33,8 @@ const Plant = (props) => {
         }
     };
 
+    const formattedPlantType = plant_type.replace(/_/g, " ");
+
     return (
         <Card className={styles.Plant}>
         <Card.Body>
@@ -45,7 +47,7 @@ const Plant = (props) => {
             </div>
           </div>
           <span>Planted: {planted_at}</span>
-          {plant_type && <Card.Text className={styles.Type}>{plant_type}</Card.Text>}
+          {formattedPlantType && <Card.Text className={styles.Type}>{formattedPlantType}</Card.Text>}
           {care_instructions && <Card.Text>{care_instructions}</Card.Text>}
         </Card.Body>
         <Card.Img className={styles.Image} src={image} alt={name} />
