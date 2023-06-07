@@ -32,7 +32,7 @@ function PlantEditForm() {
     planted_at: "",
   });
 
-  const { name, care_instructions, image, type, planted_at } = postData;
+  const { name, care_instructions, image, plant_type, planted_at } = postData;
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
@@ -74,7 +74,7 @@ function PlantEditForm() {
         const formData = new FormData();
 
         formData.append("name", name);
-        formData.append("type", type);
+        formData.append("plant_type", plant_type);
         formData.append("care_instructions", care_instructions);
         formData.append("planted_at", planted_at);
         if (imageInput?.current?.files[0]) {
@@ -115,7 +115,7 @@ function PlantEditForm() {
               as="select"
               type="text"
               name="type"
-              value={type}
+              value={plant_type}
               onChange={handleChange}
             >
               <option value="unknown">Chose one</option>
