@@ -21,6 +21,7 @@ import NotFound from "./components/NotFound";
 import PlantPage from "./pages/plants/PlantPage";
 import PlantEditForm from "./pages/plants/PlantEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
+import TaskPage from "./pages/tasks/TaskPage";
 
 
 function App() {
@@ -95,10 +96,11 @@ function App() {
           <Route exact path="/plants/:id" render={() => <PlantPage />} />
           <Route exact path="/tasks" render={() => <TasksPage
             message="No results found. Adjust the search keyword add a task."
-            filter={currentUser} 
-            />} 
-            />
-            <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
+            filter={currentUser}
+          />}
+          />
+          <Route exact path="/tasks/create" render={() => <TaskCreateForm />} />
+          <Route exact path="/tasks/:id" render={() => <TaskPage />} />
           <Route render={() => <NotFound />} />
         </Switch>
       </Container>

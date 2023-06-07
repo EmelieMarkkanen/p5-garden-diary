@@ -55,22 +55,25 @@ function TaskCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-
+      
         formData.append("title", title);
         formData.append("content", content);
         formData.append("due_date", due_date);
-        formData.append("image", imageInput.current.files[0]);
-
-        try {
-            const { data } = await axiosReq.post("/tasks/", formData);
-            history.push(`/tasks/${data.id}`);
-        } catch (err) {
-            console.log(err);
-            if (err.response?.status !== 401) {
-                setErrors(err.response?.data);
-            }
+      
+        if (imageInput.current.files.length) {
+          formData.append("image", imageInput.current.files[0]);
         }
-    };
+      
+        try {
+          const { data } = await axiosReq.post("/tasks/", formData);
+          history.push(`/tasks/${data.id}`);
+        } catch (err) {
+          console.log(err);
+          if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+          }
+        }
+      };
 
     const textFields = (
         <div className="text-center">
@@ -162,7 +165,7 @@ function TaskCreateForm() {
                                 >
                                     <Asset
                                         src={Upload}
-                                        message="Click or tap to upload an image"
+                                        message="Click or tap to upload an image (not required)"
                                     />
                                 </Form.Label>
                             )}

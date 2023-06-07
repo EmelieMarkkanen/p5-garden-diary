@@ -12,7 +12,7 @@ const Plant = (props) => {
         name,
         image,
         planted_at,
-        type,
+        plant_type,
         care_instructions,
     } = props;
 
@@ -45,10 +45,10 @@ const Plant = (props) => {
             </div>
           </div>
           <span>Planted: {planted_at}</span>
-          {type && <Card.Text className={styles.Type}>{type}</Card.Text>}
+          {plant_type && <Card.Text className={styles.Type}>{plant_type}</Card.Text>}
           {care_instructions && <Card.Text>{care_instructions}</Card.Text>}
         </Card.Body>
-        <Card.Img src={image} alt={name} />
+        <Card.Img className={styles.Image} src={image} alt={name} />
       </Card>
     );
 };
