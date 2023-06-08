@@ -1,9 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
+
+import styles from "/workspace/p5-garden-diary/src/styles/ShoppingListCreateForm.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 function ShoppingListCreateForm() {
   const [errors, setErrors] = useState({});
@@ -63,8 +66,8 @@ function ShoppingListCreateForm() {
     event.preventDefault();
 
     try {
-      const { data } = await axiosReq.post("/shoppinglist/", listData);
-      history.push(`/shoppinglist/${data.id}`);
+      const { data } = await axiosReq.post("/shopping-lists/", listData);
+      history.push(`/shopping-lists/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -74,8 +77,8 @@ function ShoppingListCreateForm() {
   };
 
   const renderItems = items.map((item, index) => (
-    <div key={index} className="d-flex">
-      <Form.Group className="flex-grow-1 mr-2">
+    <div key={index} className={styles.itemContainer}>
+      <Form.Group className={`${styles.itemField} flex-grow-1 mr-2`}>
         <Form.Control
           type="text"
           name="name"
@@ -84,7 +87,7 @@ function ShoppingListCreateForm() {
           onChange={(e) => handleItemChange(e, index)}
         />
       </Form.Group>
-      <Form.Group className="flex-grow-1 mr-2">
+      <Form.Group className={`${styles.itemField} flex-grow-1 mr-2`}>
         <Form.Control
           type="number"
           name="quantity"
@@ -93,19 +96,24 @@ function ShoppingListCreateForm() {
           onChange={(e) => handleQuantityChange(e, index)}
         />
       </Form.Group>
-      <Button variant="danger" onClick={() => handleRemoveItem(index)}>
+      <Button
+        variant="danger"
+        onClick={() => handleRemoveItem(index)}
+        className={`${styles.removeItemButton} ${btnStyles.Button}`}
+      >
         Remove
       </Button>
     </div>
   ));
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit} className={styles.formContainer}>
       <Form.Group>
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"
           name="title"
+          placeholder="Title"
           value={title}
           onChange={handleChange}
         />
@@ -116,16 +124,23 @@ function ShoppingListCreateForm() {
         </Alert>
       ))}
 
-      <h5>Items</h5>
+      <Form.Label>Items</Form.Label>
       {renderItems}
 
-      <Button className="mb-3" onClick={handleAddItem}>
-        Add Item
-      </Button>
-
-      <Button variant="primary" type="submit">
-        Create Shopping List
-      </Button>
+      <div className={styles.buttonsContainer}>
+        <Button
+          className={`${btnStyles.Button} ${btnStyles.Bright} mb-3`}
+          onClick={handleAddItem}
+        >
+          Add Item
+        </Button>
+        <Button
+          type="submit"
+          className={`${btnStyles.Button} ${btnStyles.Bright}`}
+        >
+          Create Shopping List
+        </Button>
+      </div>
     </Form>
   );
 }

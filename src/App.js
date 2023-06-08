@@ -24,6 +24,7 @@ import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import ShoppingListCreateForm from "./pages/shoppinglists/ShoppinglistCreateForm";
+import ListsPage from "./pages/shoppinglists/ListsPage";
 
 
 function App() {
@@ -84,7 +85,16 @@ function App() {
             render={() => <ProfileEditForm />}
           />
           <Route exact path="/shoppinglist/create" render={() => <ShoppingListCreateForm />} />
-
+          <Route
+            exact
+            path="/shoppinglist"
+            render={() =>
+              <ListsPage
+                message="No results found. Adjust the search keyword or add a shoppinglist."
+                filter={currentUser}
+              />
+            }
+          />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route
