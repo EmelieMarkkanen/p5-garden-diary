@@ -19,24 +19,24 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ListsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
-  const [shoppinglist, setShoppinglist] = useState({ results: [] });
+  const [shoppinglists, setShoppinglists] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchLists = async () => {
-        try {
-          const { data } = await axiosReq.get(`/shoppinglist/?${filter}&search=${query}`);
-          const filteredLists = data.results.filter((shoppinglist) =>
-            shoppinglist.title.toLowerCase().includes(query.toLowerCase())
-          );
-          setShoppinglist({ results: filteredLists });
-          setHasLoaded(true);
-        } catch (err) {
-          console.log(err);
-        }
-      };
+      try {
+        const { data } = await axiosReq.get(`/shoppinglist/?${filter}&search=${query}`);
+        const filteredLists = data.results.filter((shoppinglist) =>
+          shoppinglist.title.toLowerCase().includes(query.toLowerCase())
+        );
+        setShoppinglists(filteredLists);
+        setHasLoaded(true);
+      } catch (err) {
+        console.log(err);
+      }
+    };
 
     setHasLoaded(false);
     const timer = setTimeout(() => {
@@ -72,24 +72,24 @@ function ListsPage({ message, filter = "" }) {
 
         {hasLoaded ? (
           <>
-            {shoppinglist.results.length ? (
-              <InfiniteScroll
-                dataLength={shoppinglist.results.length}
-                next={() => fetchMoreData(shoppinglist, setShoppinglist)}
-                hasMore={!!shoppinglist.next}
-                loader={<Asset spinner />}
-                scrollThreshold="100px"
-              >
-                <div className={styles.CardGrid}>
-                  {shoppinglist.results.map((shoppinglist) => (
-                    <ListCard key={shoppinglist.id} shoppinglist={shoppinglist} />
-                  ))}
-                </div>
-              </InfiniteScroll>
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset src={NoResults} message={message} />
-              </Container>
+        {shoppinglists.length ? (
+          <InfiniteScroll
+            dataLength={shoppinglists.length}
+            next={() => fetchMoreData(shoppinglists, setShoppinglists)}
+            hasMore={!!shoppinglists.next}
+            loader={<Asset spinner />}
+            scrollThreshold="100px"
+          >
+            <div className={styles.CardGrid}>
+              {shoppinglists.map((shoppinglist) => (
+                <ListCard key={shoppinglist.id} shoppinglist={shoppinglist} />
+              ))}
+            </div>
+          </InfiniteScroll>
+        ) : (
+          <Container className={appStyles.Content}>
+            <Asset src={NoResults} message={message} />
+          </Container>
             )}
           </>
         ) : (

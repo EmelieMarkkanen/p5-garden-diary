@@ -4,70 +4,84 @@ import Button from "react-bootstrap/Button";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Alert from "react-bootstrap/Alert";
-
+import { useRedirect } from "../../hooks/useRedirect";
 import styles from "/workspace/p5-garden-diary/src/styles/ShoppingListCreateForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 function ShoppingListCreateForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
-  const [listData, setListData] = useState({
+  const [postData, setPostData] = useState({
     title: "",
-    items: [],
+    item: [],
+    quantity: [],
+    created_at: "",
   });
-  const { title, items } = listData;
+
+
+  const { title, item, quantity, created_at } = postData;
 
   const history = useHistory();
 
   const handleChange = (event) => {
-    setListData({
-      ...listData,
+    setPostData({
+      ...postData,
       [event.target.name]: event.target.value,
     });
   };
 
   const handleItemChange = (event, index) => {
-    const updatedItems = [...items];
-    updatedItems[index] = { ...updatedItems[index], name: event.target.value };
-    setListData({
-      ...listData,
-      items: updatedItems,
+    const updatedItem = [...item];
+    updatedItem[index] = event.target.value;
+    setPostData({
+      ...postData,
+      item: updatedItem,
     });
   };
 
   const handleQuantityChange = (event, index) => {
-    const updatedItems = [...items];
-    updatedItems[index] = {
-      ...updatedItems[index],
-      quantity: event.target.value,
-    };
-    setListData({
-      ...listData,
-      items: updatedItems,
+    const updatedQuantity = [...quantity];
+    updatedQuantity[index] = event.target.value;
+    setPostData({
+      ...postData,
+      quantity: updatedQuantity,
     });
   };
 
+
   const handleAddItem = () => {
-    setListData({
-      ...listData,
-      items: [...items, { name: "", quantity: "" }],
+    setPostData({
+      ...postData,
+      item: [...item, ""],
+      quantity: [...quantity, ""],
     });
   };
 
   const handleRemoveItem = (index) => {
-    const updatedItems = [...items];
-    updatedItems.splice(index, 1);
-    setListData({
-      ...listData,
-      items: updatedItems,
+    const updatedItem = [...item];
+    updatedItem.splice(index, 1);
+    const updatedQuantity = [...quantity];
+    updatedQuantity.splice(index, 1);
+    setPostData({
+      ...postData,
+      item: updatedItem,
+      quantity: updatedQuantity,
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("item", item);
+    formData.append("quantity", quantity);
+    formData.append("created_at", created_at);
+
 
     try {
-      const { data } = await axiosReq.post("/shopping-lists/", listData);
-      history.push(`/shopping-lists/${data.id}`);
+      const { data } = await axiosReq.post("/shoppinglist/", formData);
+      history.push(`/shoppinglist/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -76,13 +90,13 @@ function ShoppingListCreateForm() {
     }
   };
 
-  const renderItems = items.map((item, index) => (
+  const renderItems = item.map((name, index) => (
     <div key={index} className={styles.itemContainer}>
       <Form.Group className={`${styles.itemField} flex-grow-1 mr-2`}>
         <Form.Control
           type="text"
-          name="name"
-          value={item.name}
+          name={`item[${index}]`}
+          value={name}
           placeholder="Item name"
           onChange={(e) => handleItemChange(e, index)}
         />
@@ -90,8 +104,8 @@ function ShoppingListCreateForm() {
       <Form.Group className={`${styles.itemField} flex-grow-1 mr-2`}>
         <Form.Control
           type="number"
-          name="quantity"
-          value={item.quantity}
+          name={`quantity[${index}]`}
+          value={quantity[index]}
           placeholder="Quantity"
           onChange={(e) => handleQuantityChange(e, index)}
         />
@@ -118,11 +132,12 @@ function ShoppingListCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
+      {errors?.title && errors.title.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
+
 
       <Form.Label>Items</Form.Label>
       {renderItems}

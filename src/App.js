@@ -25,6 +25,7 @@ import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
 import ShoppingListCreateForm from "./pages/shoppinglists/ShoppinglistCreateForm";
 import ListsPage from "./pages/shoppinglists/ListsPage";
+import ListPage from "./pages/shoppinglists/ListPage";
 
 
 function App() {
@@ -95,6 +96,7 @@ function App() {
               />
             }
           />
+          <Route exact path="/shoppinglist/:id" render={() => <ListPage />} />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route
