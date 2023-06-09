@@ -45,8 +45,8 @@ function ListCreateForm() {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        console.log(err.response.data)
       }
-      console.log(err.response.data)
     }
   };
 

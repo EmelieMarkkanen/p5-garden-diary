@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "../../styles/Plant.module.css";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";

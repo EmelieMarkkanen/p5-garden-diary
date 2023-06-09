@@ -1,7 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import { useHistory } from "react-router-dom";
-import styles from "../styles/Cards.module.css";
 
 function ListCard({ items }) {
     const history = useHistory();
