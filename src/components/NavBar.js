@@ -37,8 +37,8 @@ const NavBar = () => {
       <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/shoppinglist"
-    >Shoppinglists
+      to="/items"
+    >Shoppinglist
     </NavLink>
     <NavLink
       className={styles.NavLink}

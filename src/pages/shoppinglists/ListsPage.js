@@ -19,7 +19,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ListsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
-  const [shoppinglists, setShoppinglists] = useState([]);
+  const [items, setItems] = useState([]);
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -27,11 +27,11 @@ function ListsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const { data } = await axiosReq.get(`/shoppinglists/?${filter}&search=${query}`);
-        const filteredLists = data.results.filter((shoppinglist) =>
-          shoppinglist.title.toLowerCase().includes(query.toLowerCase())
+        const { data } = await axiosReq.get(`/items/?${filter}&search=${query}`);
+        const filteredLists = data.results.filter((items) =>
+          items.name.toLowerCase().includes(query.toLowerCase())
         );
-        setShoppinglists(filteredLists);
+        setItems(filteredLists);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -60,36 +60,36 @@ function ListsPage({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search shoppinglists"
+            placeholder="Search items"
           />
         </Form>
 
-        <Link to="/shoppinglist/create">
+        <Link to="/items/create">
           <Button className={`${btnStyles.Button} ${btnStyles.Blue}`}>
-            Add a new shoppinglist
+            Add a new item to list
           </Button>
         </Link>
 
         {hasLoaded ? (
           <>
-        {shoppinglists.length ? (
-          <InfiniteScroll
-            dataLength={shoppinglists.length}
-            next={() => fetchMoreData(shoppinglists, setShoppinglists)}
-            hasMore={!!shoppinglists.next}
-            loader={<Asset spinner />}
-            scrollThreshold="100px"
-          >
-            <div className={styles.CardGrid}>
-              {shoppinglists.map((shoppinglist) => (
-                <ListCard key={shoppinglist.id} shoppinglist={shoppinglist} />
-              ))}
-            </div>
-          </InfiniteScroll>
-        ) : (
-          <Container className={appStyles.Content}>
-            <Asset src={NoResults} message={message} />
-          </Container>
+            {items.length ? (
+              <InfiniteScroll
+                dataLength={items.length}
+                next={() => fetchMoreData(items, setItems)}
+                hasMore={!!items.next}
+                loader={<Asset spinner />}
+                scrollThreshold="100px"
+              >
+                <div className={styles.CardGrid}>
+                  {items.map((items) => (
+                    <ListCard key={items.id} items={items} />
+                  ))}
+                </div>
+              </InfiniteScroll>
+            ) : (
+              <Container className={appStyles.Content}>
+                <Asset src={NoResults} message={message} />
+              </Container>
             )}
           </>
         ) : (

@@ -55,25 +55,25 @@ function TaskCreateForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-      
+
         formData.append("title", title);
         formData.append("content", content);
         formData.append("due_date", due_date);
-      
+
         if (imageInput.current.files.length) {
-          formData.append("image", imageInput.current.files[0]);
+            formData.append("image", imageInput.current.files[0]);
         }
-      
+
         try {
-          const { data } = await axiosReq.post("/tasks/", formData);
-          history.push(`/tasks/${data.id}`);
+            const { data } = await axiosReq.post("/tasks/", formData);
+            history.push(`/tasks/${data.id}`);
         } catch (err) {
-          console.log(err);
-          if (err.response?.status !== 401) {
-            setErrors(err.response?.data);
-          }
+            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
-      };
+    };
 
     const textFields = (
         <div className="text-center">

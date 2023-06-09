@@ -66,9 +66,11 @@ function App() {
           />
           <Route exact path="/signin" render={() => <SignInForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
+
           <Route exact path="/posts/create" render={() => <PostCreateForm />} />
           <Route exact path="/posts/:id" render={() => <PostPage />} />
           <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
+
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route
             exact
@@ -85,18 +87,19 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route exact path="/shoppinglist/create" render={() => <ShoppingListCreateForm />} />
+          <Route exact path="/items/create" render={() => <ShoppingListCreateForm />} />
           <Route
             exact
-            path="/shoppinglist"
+            path="/items"
             render={() =>
               <ListsPage
-                message="No results found. Adjust the search keyword or add a shoppinglist."
-                filter={currentUser}
+              message="No results found. Adjust the search keyword add a list."
+              filter={currentUser}
               />
             }
           />
-          <Route exact path="/shoppinglists/:id" render={() => <ListPage />} />
+          <Route exact path="/items/:id" render={() => <ListPage />} />
+
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route
@@ -110,6 +113,7 @@ function App() {
             }
           />
           <Route exact path="/plants/:id" render={() => <PlantPage />} />
+
           <Route exact path="/tasks" render={() => <TasksPage
             message="No results found. Adjust the search keyword add a task."
             filter={currentUser}
