@@ -80,7 +80,7 @@ function ShoppingListCreateForm() {
 
 
     try {
-      const { data } = await axiosReq.post("/shoppinglist/", formData);
+      const { data } = await axiosReq.post("/shoppinglists/", formData);
       history.push(`/shoppinglist/${data.id}`);
     } catch (err) {
       console.log(err);

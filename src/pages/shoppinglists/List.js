@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
-import { axiosRes } from "../../api/axiosDefaults";
+import { axiosReq } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
 const List = (props) => {
@@ -16,7 +16,7 @@ const List = (props) => {
     const confirmed = window.confirm("Are you sure you want to delete this list?");
     if (confirmed) {
       try {
-        await axiosRes.delete(`/shoppinglist/${id}/`);
+        await axiosReq.delete(`/shoppinglists/${id}/`);
         history.goBack();
       } catch (err) {
         console.log(err);
@@ -39,9 +39,9 @@ const List = (props) => {
         </div>
         {created_at && <Card.Text>Created: {created_at}</Card.Text>}
         {item &&
-          item.map((item, index) => (
-            <Card.Text key={index}>
-              {item} - Quantity: {props.quantity[index]}
+          item.map((shoppingListItem) => (
+            <Card.Text key={shoppingListItem.item.id}>
+              {shoppingListItem.item.name} - Quantity: {shoppingListItem.quantity}
             </Card.Text>
           ))}
       </Card.Body>

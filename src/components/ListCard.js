@@ -7,7 +7,7 @@ function ListCard({ shoppinglist }) {
     const history = useHistory();
 
     const handleClick = () => {
-        history.push(`/shoppinglist/${shoppinglist.id}`);
+        history.push(`/shoppinglist/${shoppinglist.id}/`);
     };
 
     return (

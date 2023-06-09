@@ -96,7 +96,7 @@ function App() {
               />
             }
           />
-          <Route exact path="/shoppinglist/:id" render={() => <ListPage />} />
+          <Route exact path="/shoppinglists/:id" render={() => <ListPage />} />
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
           <Route

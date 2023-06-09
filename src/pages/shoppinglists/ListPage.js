@@ -15,7 +15,7 @@ function ListPage() {
   useEffect(() => {
     const fetchList = async () => {
       try {
-        const response = await axiosReq.get(`/shoppinglist/${id}`);
+        const response = await axiosReq.get(`/shoppinglists/${id}`);
         setShoppingList(response.data);
       } catch (err) {
         console.log(err);
@@ -26,14 +26,14 @@ function ListPage() {
   }, [id]);
 
   const handleEdit = () => {
-    history.push(`/shoppinglist/${id}/edit`);
+    history.push(`/shoppinglists/${id}/edit`);
   };
 
   const handleDelete = async () => {
     const confirmed = window.confirm("Are you sure you want to delete this list?");
     if (confirmed) {
       try {
-        await axiosRes.delete(`/shoppinglist/${id}`);
+        await axiosReq.delete(`/shoppinglists/${id}`);
         history.goBack();
       } catch (err) {
         console.log(err);
@@ -48,6 +48,7 @@ function ListPage() {
           {shoppingList && (
             <List
               {...shoppingList}
+              items={shoppingList.items || []}
               listPage={true}
               handleEdit={handleEdit}
               handleDelete={handleDelete}

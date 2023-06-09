@@ -27,7 +27,7 @@ function ListsPage({ message, filter = "" }) {
   useEffect(() => {
     const fetchLists = async () => {
       try {
-        const { data } = await axiosReq.get(`/shoppinglist/?${filter}&search=${query}`);
+        const { data } = await axiosReq.get(`/shoppinglists/?${filter}&search=${query}`);
         const filteredLists = data.results.filter((shoppinglist) =>
           shoppinglist.title.toLowerCase().includes(query.toLowerCase())
         );
