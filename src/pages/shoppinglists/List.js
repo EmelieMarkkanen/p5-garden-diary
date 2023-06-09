@@ -1,12 +1,11 @@
 import React from "react";
-import styles from "../../styles/Plant.module.css";
 import { Card } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
 const List = (props) => {
-  const { name, quantity 
+  const { name, quantity, id, 
   } = props;
   const history = useHistory();
 
@@ -26,7 +25,7 @@ const List = (props) => {
   };
 
   return (
-    <Card className={styles.Plant}>
+    <Card>
       <Card.Body>
         <div className="d-flex align-items-center justify-content-between">
           <div className="text-center flex-grow-1">
