@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Alert from "react-bootstrap/Alert";
 import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import { useRedirect } from "../../hooks/useRedirect";
+//import { useRedirect } from "../../hooks/useRedirect";
 
-function ListCreateForm() {
-  useRedirect("loggedOut");
+function ListCreateForm({ setItems }) {
+  //const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
@@ -39,12 +37,15 @@ function ListCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/items/", formData);
-      history.push(`/items/${data.id}`);
+      const newItem = data ?? {}; 
+      setItems((prevItems) => [newItem, ...prevItems]);
+      setPostData({ name: "", quantity: "" });
+      setErrors({});
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        console.log(err.response.data)
+        console.log(err.response.data);
       }
     }
   };
@@ -58,6 +59,7 @@ function ListCreateForm() {
           name="name"
           value={name}
           onChange={handleChange}
+          className="form-control-sm"
         />
       </Form.Group>
       {errors?.name?.map((message, idx) => (
@@ -73,6 +75,7 @@ function ListCreateForm() {
           name="quantity"
           value={quantity}
           onChange={handleChange}
+          className="form-control-sm"
         />
       </Form.Group>
       {errors?.quantity?.map((message, idx) => (
@@ -94,13 +97,11 @@ function ListCreateForm() {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-        </Col>
-          <Container className={appStyles.Content}>{textFields}</Container>
-      </Row>
-    </Form>
+    <Container className={`d-flex align-items-center justify-content-center ${appStyles.Content}`}>
+      <Form onSubmit={handleSubmit} className="w-100">
+        {textFields}
+      </Form>
+    </Container>
   );
 }
 

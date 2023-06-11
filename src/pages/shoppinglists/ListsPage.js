@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Form from "react-bootstrap/Form";
 import { Button } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
@@ -10,11 +10,9 @@ import { fetchMoreData } from "../../utils/utils";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
-import styles from "../../styles/Cards.module.css";
-import ListCard from "../../components/ListCard";
+import styles from "../../styles/ListsPage.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Link } from "react-router-dom";
-import appStyles from "../../App.module.css";
+import ListCreateForm from "./ShoppinglistCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function ListsPage({ message, filter = "" }) {
@@ -23,13 +21,14 @@ function ListsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const fetchLists = async () => {
       try {
         const { data } = await axiosReq.get(`/items/?${filter}&search=${query}`);
-        const filteredLists = data.results.filter((items) =>
-          items.name.toLowerCase().includes(query.toLowerCase())
+        const filteredLists = data.results.filter((item) =>
+          item.name.toLowerCase().includes(query.toLowerCase())
         );
         setItems(filteredLists);
         setHasLoaded(true);
@@ -48,10 +47,14 @@ function ListsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
+  const handleCreateItem = async (newItem) => {
+    setItems((prevItems) => [newItem, ...prevItems]);
+  };
+
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8} xl={9}>
-        <Form
+      <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
@@ -60,45 +63,52 @@ function ListsPage({ message, filter = "" }) {
             onChange={(event) => setQuery(event.target.value)}
             type="text"
             className="mr-sm-2"
-            placeholder="Search items"
+            placeholder="Search item"
           />
         </Form>
+        
+          <ListCreateForm onCreateItem={handleCreateItem} />
 
-        <Link to="/items/create">
-          <Button className={`${btnStyles.Button} ${btnStyles.Blue}`}>
-            Add a new item to list
-          </Button>
-        </Link>
-
-        {hasLoaded ? (
-          <>
-            {items.length ? (
-              <InfiniteScroll
-                dataLength={items.length}
-                next={() => fetchMoreData(items, setItems)}
-                hasMore={!!items.next}
-                loader={<Asset spinner />}
-                scrollThreshold="100px"
-              >
-                <div className={styles.CardGrid}>
-                  {items.map((items) => (
-                    <ListCard key={items.id} items={items} />
-                  ))}
-                </div>
-              </InfiniteScroll>
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset src={NoResults} message={message} />
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container>
-            <Asset spinner />
-          </Container>
-        )}
-      </Col>
-    </Row>
+          {hasLoaded ? (
+            <>
+              {items.length ? (
+                <InfiniteScroll
+                  dataLength={items.length}
+                  next={() => fetchMoreData(items, setItems)}
+                  hasMore={!!items.next}
+                  loader={<Asset spinner />}
+                  scrollThreshold="100px"
+                >
+                  <table className="table">
+                    <thead>
+                      <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {items.map((item) => (
+                        <tr key={item.id}>
+                          <td>{item.name}</td>
+                          <td>{item.quantity}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </InfiniteScroll>
+              ) : (
+                <Container>
+                  <Asset src={NoResults} message={message} />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container>
+              <Asset spinner />
+            </Container>
+          )}
+        </Col>
+      </Row>
   );
 }
 

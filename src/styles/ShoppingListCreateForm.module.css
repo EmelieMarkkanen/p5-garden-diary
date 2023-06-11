@@ -1,31 +1,13 @@
+
+.container {
+  border: 2px solid green;
+}
+
 .formContainer {
-    border: 1px solid green;
-    padding: 20px;
-    border-radius: 2px;
-  }
-  
-  .itemContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .itemField {
-    flex-grow: 1;
-    margin-right: 10px;
-  }
-  
-  .removeItemButton {
-    margin-left: 10px;
-    align-self: flex-start;
-    background-color: red;
-    border-color: red;
-  }
-  
-  .buttonsContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-  
+  margin: auto;
+  width: 300px;
+}
+
+.inputField {
+  width: 100%;
+}
