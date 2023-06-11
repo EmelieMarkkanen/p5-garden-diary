@@ -87,18 +87,16 @@ function App() {
             path="/profiles/:id/edit"
             render={() => <ProfileEditForm />}
           />
-          <Route exact path="/items/create" render={() => <ShoppingListCreateForm />} />
           <Route
             exact
             path="/items"
             render={() =>
               <ListsPage
-              message="No results found. Adjust the search keyword add a list."
+              message="No results found. Adjust the search keyword or add an item."
               filter={currentUser}
               />
             }
           />
-          <Route exact path="/items/:id" render={() => <ListPage />} />
 
           <Route exact path="/plants/create" render={() => <PlantCreateForm />} />
           <Route exact path="/plants/:id/edit" render={() => <PlantEditForm />} />
