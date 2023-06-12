@@ -16,36 +16,12 @@ const SignUpForm = () => {
     username: "",
     password1: "",
     password2: "",
-    /*profileImage: null,*/
   });
-  const { username, password1, password2 } = signUpData;
-
-  /* const [selectedImageName, setSelectedImageName] = useState("");*/
+  const { username, password1, password2, image } = signUpData;
 
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
-
-  /*const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    setSignUpData({
-      ...signUpData,
-      profileImage: file,
-    });
-    setSelectedImageName(file.name);
-  };
-<Form.Group className="text-center" controlId="profileImage">
-<Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
-<Form.Label>Choose a profile Image</Form.Label>
-</Button>
-<Form.Control
-type="file"
-name="profileImage"
-onChange={handleImageChange}
-/>
-{selectedImageName && <p>{selectedImageName}</p>}
-</Form.Group>
-  */
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -54,14 +30,14 @@ onChange={handleImageChange}
     formData.append("username", username);
     formData.append("password1", password1);
     formData.append("password2", password2);
-    /*formData.append("profileImage", signUpData.profileImage);*/
 
     try {
       await axios.post("dj-rest-auth/registration/", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      }); history.push("/signin");
+      });
+      history.push("/signin");
     } catch (err) {
       setErrors(err.response?.data);
     }

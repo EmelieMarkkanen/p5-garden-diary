@@ -38,18 +38,18 @@ function TaskEditForm() {
 
     useEffect(() => {
         const fetchData = async () => {
-          try {
-            const { data } = await axios.get(`/tasks/${id}/`);
-            const { title, content, image, due_date } = data;
-      
-            setPostData({ title, content, image, due_date });
-          } catch (error) {
-            console.log(error);
-          }
+            try {
+                const { data } = await axios.get(`/tasks/${id}/`);
+                const { title, content, image, due_date } = data;
+
+                setPostData({ title, content, image, due_date });
+            } catch (error) {
+                console.log(error);
+            }
         };
-      
+
         fetchData();
-      }, [id]);
+    }, [id]);
 
     const handleChange = (event) => {
         setPostData({
@@ -71,25 +71,25 @@ function TaskEditForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData();
-      
+
         formData.append("title", title);
         formData.append("content", content);
         formData.append("due_date", due_date);
-      
+
         if (imageInput.current.files.length) {
-          formData.append("image", imageInput.current.files[0]);
+            formData.append("image", imageInput.current.files[0]);
         }
-      
+
         try {
-          const { data } = await axiosReq.put(`/tasks/${id}/`, formData);
-          history.push(`/tasks/${data.id}`);
+            const { data } = await axiosReq.put(`/tasks/${id}/`, formData);
+            history.push(`/tasks/${data.id}`);
         } catch (err) {
-          console.log(err);
-          if (err.response?.status !== 401) {
-            setErrors(err.response?.data);
-          }
+            console.log(err);
+            if (err.response?.status !== 401) {
+                setErrors(err.response?.data);
+            }
         }
-      };
+    };
 
     const textFields = (
         <div className="text-center">
@@ -139,16 +139,16 @@ function TaskEditForm() {
                     {message}
                 </Alert>
             ))}
-
+            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+                Save changes
+            </Button>
             <Button
                 className={`${btnStyles.Button} ${btnStyles.Blue}`}
                 onClick={() => history.goBack()}
             >
                 cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                update task
-            </Button>
+
         </div>
     );
 

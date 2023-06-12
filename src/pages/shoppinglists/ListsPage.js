@@ -119,7 +119,7 @@ function ListsPage({ message, filter = "" }) {
           />
         </Form>
 
-        <ListCreateForm onCreateItem={handleCreateItem} />
+        <ListCreateForm setItems={setItems} />
 
         {hasLoaded ? (
           <>
