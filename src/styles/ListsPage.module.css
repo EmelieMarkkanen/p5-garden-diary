@@ -17,7 +17,15 @@ body, html {
     max-width: 800px;
   }
   
-  th, td {
+  th {
+    width: 50%;
+    text-align: center;
+    color: green;
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  td {
     width: 50%;
     text-align: center;
     color: green;

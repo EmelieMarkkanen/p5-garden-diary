@@ -130,7 +130,7 @@ function ListsPage({ message, filter = "" }) {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th>Item</th>
+                      <th>To buy</th>
                       <th>Quantity</th>
                     </tr>
                   </thead>

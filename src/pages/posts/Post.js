@@ -83,7 +83,8 @@ const Post = (props) => {
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`}>
             <Avatar src={profile_image} height={55} />
-            {owner}
+            <div className={styles.Name}>
+            {owner}</div>
           </Link>
           <div className="d-flex align-items-center">
             
