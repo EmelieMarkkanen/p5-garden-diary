@@ -12,6 +12,8 @@ import NoResults from "../../assets/no-results.png";
 import styles from "../../styles/ListsPage.module.css";
 import ListCreateForm from "./ShoppinglistCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { MoreDropdown } from "../../components/MoreDropdown";
+import { useHistory } from "react-router-dom";
 
 function ListsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
@@ -19,6 +21,24 @@ function ListsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+
+  const history = useHistory();
+
+  const handleEdit = (itemId) => {
+    history.push(`/items/${itemId}/edit`);
+  };
+
+  const handleDelete = async (itemId) => {
+    const confirmed = window.confirm("Are you sure you want to delete this item?");
+    if (confirmed) {
+      try {
+        await axiosReq.delete(`/items/${itemId}/`);
+        setItems((prevItems) => prevItems.filter((item) => item.id !== itemId));
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -76,22 +96,28 @@ function ListsPage({ message, filter = "" }) {
                   loader={<Asset spinner />}
                   scrollThreshold="100px"
                 >
-                  <table className="table">
-                    <thead>
-                      <tr>
-                        <th>Item</th>
-                        <th>Quantity</th>
+                 <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Item</th>
+                      <th>Quantity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {items.map((item) => (
+                      <tr key={item.id}>
+                        <td>{item.name}</td>
+                        <td>{item.quantity}</td>
+                        <td>
+                          <MoreDropdown
+                            handleEdit={() => handleEdit(item.id)}
+                            handleDelete={() => handleDelete(item.id)}
+                          />
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {items.map((item) => (
-                        <tr key={item.id}>
-                          <td>{item.name}</td>
-                          <td>{item.quantity}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                    ))}
+                  </tbody>
+                </table>
                 </InfiniteScroll>
               ) : (
                 <Container>
