@@ -25,7 +25,6 @@ function TaskCard({ task, setTask }) {
       }
     }
   };
-  
 
   return (
     <Card>
