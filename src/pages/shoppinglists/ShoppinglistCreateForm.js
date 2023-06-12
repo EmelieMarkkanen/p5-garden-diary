@@ -63,7 +63,7 @@ function ListCreateForm({ setItems }) {
           name="name"
           value={name}
           onChange={handleChange}
-          className="form-control-sm"
+          className="form-control-sm text-capitalize"
         />
       </Form.Group>
       {errors?.name?.map((message, idx) => (
@@ -88,14 +88,15 @@ function ListCreateForm({ setItems }) {
         </Alert>
       ))}
 
+
+      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+        Add item
+      </Button>
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={handleCancel}
       >
-        cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-        add item
+        Cancel
       </Button>
     </div>
   );

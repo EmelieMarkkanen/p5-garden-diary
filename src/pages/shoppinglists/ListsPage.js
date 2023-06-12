@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -13,7 +13,7 @@ import styles from "../../styles/ListsPage.module.css";
 import ListCreateForm from "./ShoppinglistCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import { useHistory } from "react-router-dom";
+import btnStyles from "../../styles/Button.module.css";
 
 function ListsPage({ message, filter = "" }) {
   const currentUser = useCurrentUser();
@@ -21,11 +21,46 @@ function ListsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
+  const [editingItemId, setEditingItemId] = useState(null);
+  const [editingItemName, setEditingItemName] = useState("");
+  const [editingItemQuantity, setEditingItemQuantity] = useState("");
 
-  const history = useHistory();
+  const handleEdit = (itemId, itemName, itemQuantity) => {
+    setEditingItemId(itemId);
+    setEditingItemName(itemName);
+    setEditingItemQuantity(itemQuantity);
+  };
 
-  const handleEdit = (itemId) => {
-    history.push(`/items/${itemId}/edit`);
+  const handleCancelEdit = () => {
+    setEditingItemId(null);
+    setEditingItemName("");
+    setEditingItemQuantity("");
+  };
+
+  const handleSaveEdit = async (itemId) => {
+    try {
+      await axiosReq.put(`/items/${itemId}/`, {
+        name: editingItemName,
+        quantity: editingItemQuantity,
+      });
+      setItems((prevItems) =>
+        prevItems.map((item) => {
+          if (item.id === itemId) {
+            return {
+              ...item,
+              name: editingItemName,
+              quantity: editingItemQuantity,
+            };
+          }
+          return item;
+        })
+      );
+      setEditingItemId(null);
+      setEditingItemName("");
+      setEditingItemQuantity("");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleDelete = async (itemId) => {
@@ -71,7 +106,7 @@ function ListsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8} xl={9}>
-      <Form
+        <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
@@ -84,19 +119,19 @@ function ListsPage({ message, filter = "" }) {
           />
         </Form>
 
-          <ListCreateForm onCreateItem={handleCreateItem} />
+        <ListCreateForm onCreateItem={handleCreateItem} />
 
-          {hasLoaded ? (
-            <>
-              {items.length ? (
-                <InfiniteScroll
-                  dataLength={items.length}
-                  next={() => fetchMoreData(items, setItems)}
-                  hasMore={!!items.next}
-                  loader={<Asset spinner />}
-                  scrollThreshold="100px"
-                >
-                 <table className="table">
+        {hasLoaded ? (
+          <>
+            {items.length ? (
+              <InfiniteScroll
+                dataLength={items.length}
+                next={() => fetchMoreData(items, setItems)}
+                hasMore={!!items.next}
+                loader={<Asset spinner />}
+                scrollThreshold="100px"
+              >
+                <table className="table">
                   <thead>
                     <tr>
                       <th>Item</th>
@@ -106,32 +141,60 @@ function ListsPage({ message, filter = "" }) {
                   <tbody>
                     {items.map((item) => (
                       <tr key={item.id}>
-                        <td>{item.name}</td>
-                        <td>{item.quantity}</td>
-                        <td>
-                          <MoreDropdown
-                            handleEdit={() => handleEdit(item.id)}
-                            handleDelete={() => handleDelete(item.id)}
-                          />
-                        </td>
+                        {editingItemId === item.id ? (
+                          <>
+                            <td>
+                              <Form.Control
+                                value={editingItemName}
+                                onChange={(e) => setEditingItemName(e.target.value)}
+                              />
+                            </td>
+                            <td>
+                              <Form.Control
+                                value={editingItemQuantity}
+                                onChange={(e) => setEditingItemQuantity(e.target.value)}
+                                type="number"
+                              />
+                            </td>
+                            <td>
+                              <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => handleSaveEdit(item.id)}>
+                                Update
+                              </button>
+                              <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={handleCancelEdit}>Cancel</button>
+                            </td>
+                          </>
+                        ) : (
+                          <>
+                            <td>{item.name}</td>
+                            <td>{item.quantity}</td>
+                            <td>
+                              <MoreDropdown
+                                handleEdit={() =>
+                                  handleEdit(item.id, item.name, item.quantity)
+                                }
+                                handleDelete={() => handleDelete(item.id)}
+                              />
+                            </td>
+                          </>
+                        )}
                       </tr>
                     ))}
                   </tbody>
                 </table>
-                </InfiniteScroll>
-              ) : (
-                <Container>
-                  <Asset src={NoResults} message={message} />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container>
-              <Asset spinner />
-            </Container>
-          )}
-        </Col>
-      </Row>
+              </InfiniteScroll>
+            ) : (
+              <Container>
+                <Asset src={NoResults} message={message} />
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container>
+            <Asset spinner />
+          </Container>
+        )}
+      </Col>
+    </Row>
   );
 }
 
