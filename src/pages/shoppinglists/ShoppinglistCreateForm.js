@@ -63,7 +63,7 @@ function ListCreateForm({ setItems }) {
           name="name"
           value={name}
           onChange={handleChange}
-          className="form-control-sm text-capitalize"
+          className="form-control-sm"
         />
       </Form.Group>
       {errors?.name?.map((message, idx) => (
@@ -80,6 +80,7 @@ function ListCreateForm({ setItems }) {
           value={quantity}
           onChange={handleChange}
           className="form-control-sm"
+          min={0}
         />
       </Form.Group>
       {errors?.quantity?.map((message, idx) => (

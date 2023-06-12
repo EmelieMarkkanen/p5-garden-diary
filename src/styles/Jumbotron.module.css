@@ -1,0 +1,23 @@
+.Jumbotron {
+    background-color: #D4ECE3;
+    border: 1px solid green;
+    border-radius: 2px;
+    text-align: center;
+}
+
+.Link {
+    font-weight: bold;
+    color: green;
+}
+
+@media (max-width: 768px) {
+    .Jumbotron {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 576px) {
+    .Jumbotron {
+        font-size: 12px;
+    }
+}

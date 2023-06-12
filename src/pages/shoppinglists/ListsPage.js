@@ -99,10 +99,6 @@ function ListsPage({ message, filter = "" }) {
     };
   }, [filter, query, pathname, currentUser]);
 
-  const handleCreateItem = async (newItem) => {
-    setItems((prevItems) => [newItem, ...prevItems]);
-  };
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8} xl={9}>
