@@ -1,5 +1,16 @@
-.Avatar {
+
+  .AvatarContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .Avatar {
     border-radius: 50%;
-    margin: 0px 8px 0px 8px;
     object-fit: cover;
+    margin-right: 10px;
+  }
+  
+  .AvatarText {
+    color: #8FB93C;
+    margin-left: 20px;
   }

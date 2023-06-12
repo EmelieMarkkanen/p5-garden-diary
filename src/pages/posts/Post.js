@@ -6,6 +6,8 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Post = (props) => {
   const {
@@ -94,7 +96,12 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-        <Card.Img src={image} alt={title} />
+      <LazyLoadImage
+        src={image}
+        alt={title}
+        effect="blur"
+        className={styles.PostImage}
+      />
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         <span>{updated_at}</span>

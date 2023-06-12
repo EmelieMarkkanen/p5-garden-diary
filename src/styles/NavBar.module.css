@@ -3,6 +3,8 @@
 }
 
 .NavLink {
+    display: flex;
+    align-items: center;
     padding: 5px;
     margin-right: 20px;
     color: #8FB93C;
@@ -12,8 +14,19 @@
     color: green;
 }
 
-.Logo {
+.LogoContainer {
+    display: flex;
+    align-items: center;
     position: absolute;
     left: 20px;
-    top: 3px;
+    top: 10px;
+  }
+
+  @media (max-width: 990px) {
+    .NavLink {
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        margin: 0;
+    }
 }

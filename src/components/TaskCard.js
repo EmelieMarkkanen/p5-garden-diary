@@ -40,13 +40,14 @@ function TaskCard({ task, setTask }) {
       </div>
       <Card.Body>
         <Card.Title >{task.overdue ? (
-          <i className="fas fa-exclamation text-danger text-bold"></i>
+          <i className="fas fa-exclamation text-danger text-bold" title="Overdue"></i>
         ) : null}{task.title}
         </Card.Title>
         <Card.Text>Added: {task.created_at}</Card.Text>
         <Card.Text> Due: {task.due_date} <i className="fas fa-check"
         inTask={true} 
-        onClick={taskDone} /></Card.Text>
+        onClick={taskDone}
+        title="Done" /></Card.Text>
       </Card.Body>
     </Card>
   );

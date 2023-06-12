@@ -22,3 +22,12 @@
   .HeartOutline:hover {
     color: #F5D0C5;
   }
+
+  .PostImage {
+    width: 75%;
+    height: auto; 
+    border-radius: 2px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
