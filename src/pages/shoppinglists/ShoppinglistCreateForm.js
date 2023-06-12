@@ -5,12 +5,9 @@ import Container from "react-bootstrap/Container";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Alert from "react-bootstrap/Alert";
-import { useHistory } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-//import { useRedirect } from "../../hooks/useRedirect";
 
 function ListCreateForm({ setItems }) {
-  //const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
 
   const [postData, setPostData] = useState({
@@ -19,13 +16,20 @@ function ListCreateForm({ setItems }) {
   });
 
   const { name, quantity } = postData;
-  const history = useHistory();
 
   const handleChange = (event) => {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleCancel = () => {
+    const confirmed = window.confirm("Empty form?");
+    if (confirmed) {
+      setPostData({ name: "", quantity: "" });
+      setErrors({});
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -37,7 +41,7 @@ function ListCreateForm({ setItems }) {
 
     try {
       const { data } = await axiosReq.post("/items/", formData);
-      const newItem = data ?? {}; 
+      const newItem = data ?? {};
       setItems((prevItems) => [newItem, ...prevItems]);
       setPostData({ name: "", quantity: "" });
       setErrors({});
@@ -86,7 +90,7 @@ function ListCreateForm({ setItems }) {
 
       <Button
         className={`${btnStyles.Button} ${btnStyles.Blue}`}
-        onClick={() => history.goBack()}
+        onClick={handleCancel}
       >
         cancel
       </Button>

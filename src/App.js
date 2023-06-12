@@ -23,10 +23,7 @@ import PlantEditForm from "./pages/plants/PlantEditForm";
 import TaskCreateForm from "./pages/tasks/TaskCreateForm";
 import TaskPage from "./pages/tasks/TaskPage";
 import TaskEditForm from "./pages/tasks/TaskEditForm";
-import ShoppingListCreateForm from "./pages/shoppinglists/ShoppinglistCreateForm";
 import ListsPage from "./pages/shoppinglists/ListsPage";
-import ListPage from "./pages/shoppinglists/ListPage";
-
 
 function App() {
   const currentUser = useCurrentUser();

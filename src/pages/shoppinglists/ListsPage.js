@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
@@ -11,7 +10,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Asset";
 import NoResults from "../../assets/no-results.png";
 import styles from "../../styles/ListsPage.module.css";
-import btnStyles from "../../styles/Button.module.css";
 import ListCreateForm from "./ShoppinglistCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
@@ -21,7 +19,6 @@ function ListsPage({ message, filter = "" }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
-  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const fetchLists = async () => {
@@ -66,7 +63,7 @@ function ListsPage({ message, filter = "" }) {
             placeholder="Search item"
           />
         </Form>
-        
+
           <ListCreateForm onCreateItem={handleCreateItem} />
 
           {hasLoaded ? (
