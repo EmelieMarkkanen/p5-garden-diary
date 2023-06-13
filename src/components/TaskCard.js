@@ -15,7 +15,7 @@ function TaskCard({ task, setTask }) {
   OverdueCheck(task, setTask);
 
   const taskDone = async () => {
-    const confirmed = window.confirm("Task completed?");
+    const confirmed = window.confirm("Task completed (remove task from list)?");
     if (confirmed) {
       try {
         await axiosRes.delete(`/tasks/${task.id}/`);

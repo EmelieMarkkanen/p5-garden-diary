@@ -34,27 +34,15 @@
     width: 100%;
   }
   
-  .Blue,
-  .BlueOutline:hover,
+  .Green,
+  .GreenOutline:hover,
   .Bright:hover {
     background-color: green;
     color: #B3D274;
   }
   
-  .BlueOutline,
-  .Blue:hover {
-    background-color: #B3D274;
-    color: green;
-  }
-  
-  .Black,
-  .BlackOutline:hover {
-    background-color: green;
-    color: #B3D274;
-  }
-  
-  .Black:hover,
-  .BlackOutline {
+  .GreenOutline,
+  .Green:hover {
     background-color: #B3D274;
     color: green;
   }

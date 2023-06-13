@@ -152,13 +152,13 @@ function PlantCreateForm() {
           ))}
     
           <Button
-            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+            className={`${btnStyles.Button} ${btnStyles.Green}`}
             onClick={() => history.goBack()}
           >
             Cancel
           </Button>
           <Button
-            className={`${btnStyles.Button} ${btnStyles.Blue}`}
+            className={`${btnStyles.Button} ${btnStyles.Green}`}
             type="submit"
           >
             Add plant
@@ -181,7 +181,7 @@ function PlantCreateForm() {
                       </figure>
                       <div>
                         <Form.Label
-                          className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                          className={`${btnStyles.Button} ${btnStyles.Green}`}
                           htmlFor="image-upload"
                         >
                           Change the image

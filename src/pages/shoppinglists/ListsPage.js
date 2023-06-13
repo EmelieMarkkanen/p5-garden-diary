@@ -153,10 +153,10 @@ function ListsPage({ message, filter = "" }) {
                               />
                             </td>
                             <td>
-                              <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={() => handleSaveEdit(item.id)}>
+                              <button className={`${btnStyles.Button} ${btnStyles.Green}`} onClick={() => handleSaveEdit(item.id)}>
                                 Update
                               </button>
-                              <button className={`${btnStyles.Button} ${btnStyles.Blue}`} onClick={handleCancelEdit}>Cancel</button>
+                              <button className={`${btnStyles.Button} ${btnStyles.Green}`} onClick={handleCancelEdit}>Cancel</button>
                             </td>
                           </>
                         ) : (

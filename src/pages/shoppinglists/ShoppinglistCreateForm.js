@@ -90,11 +90,11 @@ function ListCreateForm({ setItems }) {
       ))}
 
 
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Green}`} type="submit">
         Add item
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`${btnStyles.Button} ${btnStyles.Green}`}
         onClick={handleCancel}
       >
         Cancel

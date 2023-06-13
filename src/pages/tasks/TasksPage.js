@@ -65,7 +65,7 @@ function TasksPage({ message, filter = "" }) {
         </Form>
 
         <Link to="/tasks/create">
-          <Button className={`${btnStyles.Button} ${btnStyles.Blue}`}>
+          <Button className={`${btnStyles.Button} ${btnStyles.Green}`}>
             Add a task
           </Button>
         </Link>
