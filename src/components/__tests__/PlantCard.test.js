@@ -47,3 +47,4 @@ test("navigates to the plant details page on click", () => {
 
     expect(history.location.pathname).toBe(`/plants/${plant.id}`);
 });
+  

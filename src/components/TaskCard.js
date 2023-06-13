@@ -27,14 +27,13 @@ function TaskCard({ task, setTask }) {
   };
 
   return (
-    <Card>
+    <Card onClick={handleClick}>
       <div className={styles.CardImageContainer}>
         {task && task.image && (
           <img
             src={task.image}
             alt={task.title}
             className={styles.CardImage}
-            onClick={handleClick}
           />
         )}
       </div>
