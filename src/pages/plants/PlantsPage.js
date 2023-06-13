@@ -65,7 +65,7 @@ function PlantsPage({ message, filter = "" }) {
         </Form>
 
         <Link to="/plants/create">
-          <Button className={`${btnStyles.Button} ${btnStyles.Green}}`}>
+          <Button className={`${btnStyles.Button} ${btnStyles.Green}`}>
             Add a plant
           </Button>
         </Link>

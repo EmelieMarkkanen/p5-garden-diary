@@ -118,7 +118,9 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col className="py-2 p-0 p-lg-2" lg={4}>
-        <PopularProfiles />
+      <div className="d-none d-lg-block">
+          <PopularProfiles />
+        </div>
       </Col>
     </Row>
   );
