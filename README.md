@@ -104,6 +104,11 @@ Website performance on large screens could be enhanced by caching images, using 
 # Testing
 
 ## Automated tests
+For this project I decided to focus on writing some automated tests for the components Asset, Avatar, JumboTron, MoreDropDown, NavBar, NotFound, PlantCard and TaskCard.
+
+Tests are written using React testing library MSW. All tests can be found **[here](src/components/__tests__)**. Mock handlers and server setup can be found **[here](src/mocks/handlers.js)** and **[here](src/setupTests.js)**.
+
+All automated tests have been run with npm and passed. 
 
 ## Manual testing
 
