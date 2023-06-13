@@ -42,12 +42,13 @@ function TaskPage() {
   };
 
   const taskDone = async () => {
-    const confirmed = window.confirm("Task completed?");
+    const confirmed = window.confirm("Task completed (remove task from list)?");
     if (confirmed) {
       try {
         await axiosRes.delete(`/tasks/${id}/`);
         history.goBack();
       } catch (err) {
+        console.log(err);
       }
     }
   };
