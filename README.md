@@ -192,7 +192,7 @@ Users can comment on posts through the commentfield. When posting a comment the 
 Only the user who posted the comment can edit or delete it.
 
 ![No comments](src/assets/Printscreens/like-comment-0.jpg)
-![Commented](src/assets/Printscreens/like-comment-0.jpg)
+![Commented](src/assets/Printscreens/like-comment-1.jpg)
 ![Commentfield](src/assets/Printscreens/commentfield.jpg)
 ![Comment edit](src/assets/Printscreens/comment-edit.jpg)
 
