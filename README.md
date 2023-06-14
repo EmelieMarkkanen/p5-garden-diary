@@ -17,7 +17,7 @@ Garden diaries is a fictional website created as a milestone project for Code In
 ![Garden Diaries main image](src/assets/Printscreens/Prntscrn.jpg)
 
 ## Live website
-Link to live website [Garden Diaries](https://garden-diary.herokuapp.com/)
+View live website here: [Garden Diaries](https://garden-diary.herokuapp.com/)
 
 ## Table of contents
 
@@ -58,6 +58,8 @@ Link to live website [Garden Diaries](https://garden-diary.herokuapp.com/)
 The objective of this project and website was to create a fifth portfolio submission for Code Institutes fullstack developer program. Among following the projects assessment criteria, the website needed to be built using React, JSX (HTML, JavaScript and CSS) and appropriate frameworks and libraries, and connected to a separate [backend API](https://garden-diary-api.herokuapp.com/). The application needed to have complete CRUD (create, read, update and delete) functionality on the Front-End for users to work with data from an API.
 
 I've chosen to create a project aimed toward my own interests to find inspiration, and choose to create a social networking website targeted towards hobby gardeners. 
+
+**The project is party based on the Code Institute Moments course material**, using some of the code provided there, with additional functionality and styling added by me. 
 
 ## Site user goal
 Users of Garden Diaries could have several goals, such as wanting to share and take part of diary posts, networking through the comments and follow content pandering to their interests. Users can also use Garden Diaries to keep organized, keeping lists of their plants, tasks and shoppinglist for their garden.
@@ -252,6 +254,23 @@ Website performance on large screens could be enhanced by caching images, using 
 Garden diaries is fully responsive for all screen sizes. 
 
 # Components and hooks
+
+## Components
+Garden Diaries contain of eight unique components that can be used throughout the project.
+- Asset: render a loading spinner, an image, and/or a message, set by the props. 
+- Avatar: displays the users profile image.
+- Jumbotron: displays Garden Diaries welcome message.
+- MoreDropDown: displays a dropdown menu for edit, delete and task done functions.
+- NavBar: displays the navbar at the top of the site, with navlinks displaying dynamically depending on user authorization.
+- NotFound: utilizes the Asset component and displays a message for the user if they navigate to a non existing url.
+- PlantCard: displays a plant post as a card. 
+- TaskCard: displays a task post as a card, contains the taskDone functionality to remove tasks from the list.
+
+## Hooks
+Aside from the hooks included in the React library, Garden Diaries contain three unique hooks that can be used throughout the project.
+- overdueCheck: check wether a task is overdue, sets up a side effect that automatically updates the overdue status of a task.
+- useClickOutsideToggle: provides a convenient way to handle the closing of for example a menu by monitoring clicks outside the component.
+- useRedirect: redirects the user depending on user authorization status. 
 
 # Technology
 
