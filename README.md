@@ -290,6 +290,7 @@ Aside from the hooks included in the React library, Garden Diaries contain three
 - React testing library
 - npm 
 - jwt-decode
+- React lazy load image component
 
 # Testing
 
@@ -357,3 +358,12 @@ I created a repository in Github, named it ´p5-garden-diary´, and used the tem
 - [React documentation](https://react.dev/)
 - [Get bootstrap](https://getbootstrap.com/)
 - [Pexels](https://www.pexels.com/)
+- [PNGEgg](https://www.pngegg.com/en/png-zfjmh)
+- [Sooraj MV on Dribbble](https://dribbble.com/shots/3399669-No-Results-Found)
+- [Favicon generator](https://www.favicon-generator.org/)
+
+# Acknowledgements
+- Code institute for excellent teaching
+- My mentor Rohit for valuable input
+- Friends and family for manual testing and input
+- Caliban cat for emotional support and cuddle breaks
