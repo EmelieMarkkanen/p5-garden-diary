@@ -250,6 +250,9 @@ User can post private diary entries not shared with other users and saved in a s
 ### Image caching
 Website performance on large screens could be enhanced by caching images, using for example a library like **Workbox**.
 
+### Calendar integrated with task list
+A calendar displaying dates and marked with tasks due date.
+
 ## Responsive
 Garden diaries is fully responsive for all screen sizes. 
 
