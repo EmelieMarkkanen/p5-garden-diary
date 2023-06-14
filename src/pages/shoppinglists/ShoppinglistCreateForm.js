@@ -80,7 +80,7 @@ function ListCreateForm({ setItems }) {
           value={quantity}
           onChange={handleChange}
           className="form-control-sm"
-          min={0}
+          min={1}
         />
       </Form.Group>
       {errors?.quantity?.map((message, idx) => (

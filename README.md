@@ -63,6 +63,15 @@ Link to live website [Garden Diaries](https://garden-diary.herokuapp.com/)
 # Project management
 
 ## Github project board, user stories, issues and milestones
+Garden Diaries was developed using an agile methodology, using Github issues, milestones and projectboard to track tasks during the project.
+
+GitHub project board and issues played a significant role in this process, allowing for the creation of user stories and their organization in the to-do, in progress and done sections. As work began, these tasks were moved from the to-do section, to the in-progress section and later to the done section when completed, providing an efficient way to track progress and manage tasks.
+
+Garden diaries consists of a number of user stories, labled to keep them easily organized. User stories were sorted into iterations, Milestones, that were used to structure and allocate the work as the project went on. Issues that wont be finished for this projects deadline is added to the [Garden diaries backlog](https://github.com/EmelieMarkkanen/p5-garden-diary/milestone/5).
+
+- [User stories](https://github.com/EmelieMarkkanen/p5-garden-diary/issues?q=is%3Aopen+is%3Aissue)
+- [Milestones](https://github.com/EmelieMarkkanen/p5-garden-diary/milestones)
+- [Project board](https://github.com/users/EmelieMarkkanen/projects/5/views/1)
 
 ## Wireframes
 
@@ -82,29 +91,174 @@ Images are imported from [Pexels](https://www.pexels.com/). No result image is i
 
 ## Existing features
 
+### Navbar
+Garden Diaries feature a navbar that is present on all pages of the site. The navbar links change depending on wether the user is signed in or not, giving the user access to different features of the site. If the user is not signed in, the navbar show links to the sign in or sign up pages. If a user is signed in the navbar shows the users profile avatar image and their username (linking to the users profile), Followed, Liked entries, My Plants, To-do list, Shoppinglist and sign out, as well as the Add a diary entry. The navbar also feature the Garden Diaries logo. 
+
+![Navbar signed out](src/assets/Printscreens/navbar-signed-out.jpg)
+![Navbar signed in](src/assets/Printscreens/navbar-signed-in.jpg)
+
+### Sign up
+To sign up to Garden Diaries the user will need to fill out a form with preferred username and password. After submitting the form with valid data they are redirected to the sign in page. The page features a link to the sign in page, if the user is already signed up with Garden Diaries. 
+
+If the user tries to submit an invalid form (already existing username, password to short or similar to username, missed to fill out a field) they are notified through a message and asked to correct their submission. 
+
+![Sign up](src/assets/Printscreens/sign-up.jpg)
+
+![Sign up message](src/assets/Printscreens/sign-up-err.jpg)
+
+### Sign in
+
+After signing up with Garden Diaries a user can sign in by filling out the sign in form. When submitting a valid form they are redirected to the home page. 
+
+If the user tries to submit an invalid form (wrong username or password, blank field) they are notified through a message and asked to correct their submission. 
+
+![Sign in](src/assets/Printscreens/sign-in.jpg)
+
+![Sign in message](src/assets/Printscreens/sign-in-err.jpg)
+
+### Jumbotron
+Non signed in visitors is greeted by a welcome message describing Garden Diaries and a link to the sign up form. The message is hidden once the user sign in. 
+
+![Jumbotron](src/assets/Printscreens/jumbotron.jpg)
+
+### Diary post feed
+Users diary posts are displayed in the post feed on the home page, sorted by latest posts by all users. The feed features infinite scrolling, as long as there is content the user can scroll further. 
+
+Clicking on the comments icon will redirect the user to a detailed view of the post and it's commentfield. 
+
+![Feed](src/assets/Printscreens/feed.jpg)
+
+### Add a diary entry
+Users can add a new diary post through a form, with title, notes and an image. The post is displayed in the post feed and in the users profile post feed.
+The cancel button redirects the user back to the previous page and no post is made.
+
+![Post form](src/assets/Printscreens/post-form.jpg)
+
+### Popular profiles
+The popular profile section features the users with the most followers, to let other users easily find new interesting content. This section is responsive, displaying differently on large and smaller screens. Clicking the `Follow` button saved the posts by that user in the `Followed` section.
+
+![Popular profiles mobile](src/assets/Printscreens/popular-mobile.jpg)
+
+![Popular profiles](src/assets/Printscreens/popular.jpg)
+
+### Follow - Followed
+By clicking the `Follow` button, either in the Popular profiles section or in a users profile bio will let users follow each others content, having the followed users posts display on the Followed page. Clicking `Unfollow` will let users stop following a user and remove their posts from the Following feed.
+
+The amounts of followers and following for a user can be seen in their profile bio. 
+
+![Follow](src/assets/Printscreens/following.jpg)
+
+### Searchbar
+The diary entry feed, My plants, To-do list, Shoppinglist, Following and Liked entries feature a searchbar for easy navigation. If no match to searchquery can be found a No results image and message is displayed. 
+
+![Searchbar](src/assets/Printscreens/searchbar.jpg)
+![No result found](src/assets/Printscreens/no-result.jpg)
+
+### Profile page
+Clicking the avatar image or username in the navbar redirects the user to their own profile page. Here they can view all their own diary posts, add a bio and profile image, see how many posts they've made, how many other users they are following and how many are following them. Clicking the dropdown menu lets the user edit their username, password and bio. 
+
+If a user tries to edit their username to an already existing one they will be notified of this. If they try to change their password to an invalid one they will be notified of this. 
+
+![Bio](src/assets/Printscreens/bio.jpg)
+![Bio edit](src/assets/Printscreens/bio-edit.jpg)
+
+### Like - Liked entries
+By clicking the heart icon on a diary post a user can like the post, increasing the likes count on a post. The post is also saved to the Liked entries feed, so that users can find and read their favorite entries again. 
+By clicking the heart icon again the likes count is decreased and the post is  removed from the Liked entries feed. 
+
+User can not like their own post, and are notified if they try to click the heart icon on their own post. 
+
+![No likes](src/assets/Printscreens/like-comment-0.jpg)
+![Liked](src/assets/Printscreens/like-comment-1.jpg)
+
+![Like message](src/assets/Printscreens/like-message.jpg)
+
+### Comments
+Users can comment on posts through the commentfield. When posting a comment the comments count on the post is increased, and decreased if a user deletes their comment.
+
+Only the user who posted the comment can edit or delete it.
+
+![No comments](src/assets/Printscreens/like-comment-0.jpg)
+![Commented](src/assets/Printscreens/like-comment-0.jpg)
+![Commentfield](src/assets/Printscreens/commentfield.jpg)
+![Comment edit](src/assets/Printscreens/comment-edit.jpg)
+
+### My plants
+User can keep a list of their own plants, with instructions, image, date for when it was planted and what kind of plant it is. 
+Plants are displayed as cards, clicking on the card will redirect the user to a detailed view of the plant post, where the user can choose to edit or delete the plant post. If the user clicks on the delete icon, they are notified with a popup, asking if they really want to delete the plant post.
+
+When choosing to edit a plant post the user is redirected to a prepopulated form. 
+
+![Plants](src/assets/Printscreens/plants.jpg)
+![Plants detail](src/assets/Printscreens/plants-detail.jpg)
+![Plants form](src/assets/Printscreens/plants-form.jpg)
+
+### To-do list
+User can keep a list of tasks to do in their garden, sorted by due dates closest to todays date, with overdue tasks displayed at the top. Tasks are displayed as cards, with information about when the task was added, the due date and a checkmark to set tasks as done. The user can choose to upload an image, otherwise a default image is added. 
+Clicking the card redirects the user to a detailed view of the task, where the user can choose to edit, delete or set the task as done. When a task is set as done it is deleted from the task list. If the user clicks on the delete icon, they are notified with a popup, asking if they really want to delete the task. 
+
+When choosing to edit a task the user is redirected to a prepopulated form. 
+
+If a tasks due date is passed, the task is automatically set as overdue, and a red exclamation icon is displayed on the task card, and the message `Task is overdue!` is displayed in the detailed task view. 
+
+![Tasks](src/assets/Printscreens/tasks.jpg)
+![Task detail](src/assets/Printscreens/tasks-detail.jpg)
+![Task form](src/assets/Printscreens/tasks-form.jpg)
+
+### Shoppinglist
+Users can keep a list of things they need to purchase for their garden. The list is sorted by last item added. Users add new items by filling out the item name and quantity in the form, the list is automatically updated. Users can edit or delete items by clicking the dropdown menu. 
+
+![Shoppinglist](src/assets/Printscreens/list.jpg)
+![Shoppinglist edit](src/assets/Printscreens/list-edit.jpg)
+
 ## Future features
+These are a few examples of features that would increase the user experience for Garden Diaries that I would like to implement in the future.
 
 ### Profile image upload on sign up
 User can add a profile image when signing up to Garden Diaries, instead of adding one after signing in the first time. 
 
 ### Thumbnail images for shopping list
-User can upload an image that will be displayed as a thumbnail images next to the item name. 
+User can upload an image that will be displayed as a thumbnail images next to the item name.
+
+### Sorting shoppinglist items by different criteria
+User can sort items in the list by name, quantity, created at date and the like. 
+
+### Post owner can delete comments on their posts
+User can delete unwanted comments by other users on their diary entries. 
+
+### Private diary entries
+User can post private diary entries not shared with other users and saved in a separate feed.
 
 ### Image caching
 Website performance on large screens could be enhanced by caching images, using for example a library like **Workbox**.
 
+## Responsive
+Garden diaries is fully responsive for all screen sizes. 
+
+# Components and hooks
+
 # Technology
 
 ## Languages
+- JSX
+- HTML
+- CSS
 
 ## Frameworks
+- React
+- React bootstrap
 
 ## Other software and libraries
+- MSW 
+- Axios
+- React testing library
+- npm 
+- jwt-decode
 
 # Testing
 
 ## Automated tests
-For this project I decided to focus on writing some automated tests for the components Asset, Avatar, JumboTron, MoreDropDown, NavBar, NotFound, PlantCard and TaskCard.
+For this project I decided to focus on writing some automated tests for the components Asset, JumboTron, MoreDropDown, NavBar, NotFound, PlantCard and TaskCard.
 
 Tests are written using React testing library MSW. All tests can be found **[here](src/components/__tests__)**. Mock handlers and server setup can be found **[here](src/mocks/handlers.js)** and **[here](src/setupTests.js)**.
 
@@ -131,12 +285,29 @@ To fix this in the future a library like **Workbox** could be implemented for ca
 
 
 # Deployment
+The master branch of this repository has been used for the deployed version of this application.
 
 ## Github and Gitpod
+I created a repository in Github, named it ´p5-garden-diary´, and used the template [Code-Institute-Org/react-ci-template](https://github.com/Code-Institute-Org/react-ci-template).
+
+- Once the repository is created, click the green button to the right (Gitpod) to open a new Gitpod workspace.
+- To open and work on the project it is best to open the workspace from Gitpod workspaces (rather than Github), this will open your previous workspace rather than creating a new one. You should pin the workspace.
+- Committing changes should be done often and should have clear messages. Use the following commands to make your commits:
+- git add . : adds all modified files to a staging area
+- git commit -m "A message explaining your commit": commits all changes to a local repository.
+- git push: pushes all your committed changes to your Github repository.
+- While working on the project I used the Gitpod development server to view the website in action. To start the development server run the following command: npm start.
 
 ## Create a react project and app
+- When opening the workspace the template will setup necessary files to run React. 
+- Type `npm install` and `npm start` to start the React app. 
+- Create a Procfile in the root directory and add `web: serve -s build`.   
+- Folders for components, hooks, pages, contexts, css etc is created in the src directory.
 
 ## Heroku
+- Log into Heroku or create an account.
+- Click ´New´ create new heroku app. Give the app an app name and select your region, I chose Europe. 
+- Under the project deploy tab, select GitHub for the deployment method. Search for the repository name and click connect. Scroll down to the manual deployment section and click deploy branch. Make sure you have the main branch selected. 
 
 # Credits
 
