@@ -57,9 +57,9 @@ View live website here: [Garden Diaries](https://garden-diary.herokuapp.com/)
 ## Objective
 The objective of this project and website was to create a fifth portfolio submission for Code Institutes fullstack developer program. Among following the projects assessment criteria, the website needed to be built using React, JSX (HTML, JavaScript and CSS) and appropriate frameworks and libraries, and connected to a separate [backend API](https://garden-diary-api.herokuapp.com/). The application needed to have complete CRUD (create, read, update and delete) functionality on the Front-End for users to work with data from an API.
 
-I've chosen to create a project aimed toward my own interests to find inspiration, and choose to create a social networking website targeted towards hobby gardeners. 
+I've chosen to create a project aimed toward my own interests to find inspiration, and chose to create a social networking website targeted towards hobby gardeners. 
 
-**The project is party based on the Code Institute Moments course material**, using some of the code provided there, with additional functionality and styling added by me. 
+**The project is partly based on the Code Institute Moments course material**, using some of the code provided there, with additional functionality and styling added by me. 
 
 ## Site user goal
 Users of Garden Diaries could have several goals, such as wanting to share and take part of diary posts, networking through the comments and follow content pandering to their interests. Users can also use Garden Diaries to keep organized, keeping lists of their plants, tasks and shoppinglist for their garden.
@@ -74,7 +74,7 @@ Garden Diaries was developed using an agile methodology, using Github issues, mi
 
 GitHub project board and issues played a significant role in this process, allowing for the creation of user stories and their organization in the to-do, in progress and done sections. As work began, these tasks were moved from the to-do section, to the in-progress section and later to the done section when completed, providing an efficient way to track progress and manage tasks.
 
-Garden diaries consists of a number of user stories, labled to keep them easily organized. User stories were sorted into iterations, Milestones, that were used to structure and allocate the work as the project went on. Issues that wont be finished for this projects deadline is added to the [Garden diaries backlog](https://github.com/EmelieMarkkanen/p5-garden-diary/milestone/5).
+Garden diaries consists of a number of user stories, labeled to keep them easily organized. User stories were sorted into iterations, Milestones, that were used to structure and allocate the work as the project went on. Issues that wont be finished for this projects deadline is added to the [Garden diaries backlog](https://github.com/EmelieMarkkanen/p5-garden-diary/milestone/5).
 
 - [User stories](https://github.com/EmelieMarkkanen/p5-garden-diary/issues?q=is%3Aopen+is%3Aissue)
 - [Milestones](https://github.com/EmelieMarkkanen/p5-garden-diary/milestones)
@@ -113,7 +113,7 @@ Garden Diaries feature a navbar that is present on all pages of the site. The na
 ### Sign up
 To sign up to Garden Diaries the user will need to fill out a form with preferred username and password. After submitting the form with valid data they are redirected to the sign in page. The page features a link to the sign in page, if the user is already signed up with Garden Diaries. 
 
-If the user tries to submit an invalid form (already existing username, password to short or similar to username, missed to fill out a field) they are notified through a message and asked to correct their submission. 
+If the user tries to submit an invalid form (already existing username, password too short or similar to username, missed to fill out a field) they are notified through a message and asked to correct their submission. 
 
 ![Sign up](src/assets/Printscreens/sign-up.jpg)
 
@@ -259,7 +259,7 @@ Garden diaries is fully responsive for all screen sizes.
 # Components and hooks
 
 ## Components
-Garden Diaries contain of eight unique components that can be used throughout the project.
+Garden Diaries contains eight unique components that can be used throughout the project.
 - Asset: render a loading spinner, an image, and/or a message, set by the props. 
 - Avatar: displays the users profile image.
 - Jumbotron: displays Garden Diaries welcome message.
@@ -351,6 +351,7 @@ I created a repository in Github, named it ´p5-garden-diary´, and used the tem
 - Under the project deploy tab, select GitHub for the deployment method. Search for the repository name and click connect. Scroll down to the manual deployment section and click deploy branch. Make sure you have the main branch selected. 
 
 # Credits
+- [CI Moments](https://github.com/Code-Institute-Solutions/moments)
 - [Heroku](https://heroku.com/)
 - [Font awesome](https://fontawesome.com/)
 - [React bootstrap](https://react-bootstrap-v4.netlify.app/)
