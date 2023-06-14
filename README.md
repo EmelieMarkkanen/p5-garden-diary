@@ -10,7 +10,7 @@ To keep their garden organized, Garden Diaries lets users to maintain an organiz
 
 Garden Diaries also offers convenient to-do and shopping lists. These practical tools lets users stay on top of their gardening tasks and effortlessly manage their shopping needs.
 
-In summary, Garden Diaries is an all-encompassing platform that seamlessly integrates social networking and garden management.
+In summary, Garden Diaries is a platform that seamlessly integrates social networking and garden management.
 
 Garden diaries is a fictional website created as a milestone project for Code Institutes fullstack developer course. 
 
@@ -55,10 +55,15 @@ Link to live website [Garden Diaries](https://garden-diary.herokuapp.com/)
 # Project
 
 ## Objective
+The objective of this project and website was to create a fifth portfolio submission for Code Institutes fullstack developer program. Among following the projects assessment criteria, the website needed to be built using React, JSX (HTML, JavaScript and CSS) and appropriate frameworks and libraries, and connected to a separate [backend API](https://garden-diary-api.herokuapp.com/). The application needed to have complete CRUD (create, read, update and delete) functionality on the Front-End for users to work with data from an API.
+
+I've chosen to create a project aimed toward my own interests to find inspiration, and choose to create a social networking website targeted towards hobby gardeners. 
 
 ## Site user goal
+Users of Garden Diaries could have several goals, such as wanting to share and take part of diary posts, networking through the comments and follow content pandering to their interests. Users can also use Garden Diaries to keep organized, keeping lists of their plants, tasks and shoppinglist for their garden.
 
 ## Site owner goal
+As a site owner the goal is to provide a stable and enjoyable user experience, that encourages user interaction. The website should be accessible, appealing and contain content that is well structured, intuitive and of high standard. Site administrator should make sure the content is monitored to meet community standard.
 
 # Project management
 
@@ -243,12 +248,13 @@ Garden diaries is fully responsive for all screen sizes.
 - JSX
 - HTML
 - CSS
+- Javascript
 
 ## Frameworks
 - React
 - React bootstrap
 
-## Other software and libraries
+## Other software and dependencies
 - MSW 
 - Axios
 - React testing library
@@ -265,10 +271,12 @@ Tests are written using React testing library MSW. All tests can be found **[her
 All automated tests have been run with npm and passed. 
 
 ## Manual testing
+Garden Diaries have been continualy tested manually troughout development and after deployment. A full summary of manual testing can be found [here](TESTING.md).
 
 # Code validation
 
 ## Browser test
+Garden diaries have been tested in Chrome, Edge and Firefox with no errors found in functionality.
 
 ### JSX
 JSX code have been manually validated and adjusted throughout development via direct feedback from npm in the terminal. 
@@ -282,7 +290,6 @@ Garden diaries have been tested using Chrome developer Lighthouse tester. Perfor
 To fix this in the future a library like **Workbox** could be implemented for caching images.
 
 ![Lighthouse](src/assets/Printscreens/Lighthouse.jpg)
-
 
 # Deployment
 The master branch of this repository has been used for the deployed version of this application.
@@ -310,10 +317,13 @@ I created a repository in Github, named it ´p5-garden-diary´, and used the tem
 - Under the project deploy tab, select GitHub for the deployment method. Search for the repository name and click connect. Scroll down to the manual deployment section and click deploy branch. Make sure you have the main branch selected. 
 
 # Credits
-
-
-
-
-
-
-
+- [Heroku](https://heroku.com/)
+- [Font awesome](https://fontawesome.com/)
+- [React bootstrap](https://react-bootstrap-v4.netlify.app/)
+- [W3Schools](https://www.w3schools.com/)
+- [Cloudinary](https://cloudinary.com/)
+- [Lucidchart](https://www.lucidchart.com/)
+- [Google fonts](https://fonts.google.com/)
+- [React documentation](https://react.dev/)
+- [Get bootstrap](https://getbootstrap.com/)
+- [Pexels](https://www.pexels.com/)
