@@ -79,6 +79,13 @@ Garden diaries consists of a number of user stories, labled to keep them easily 
 - [Project board](https://github.com/users/EmelieMarkkanen/projects/5/views/1)
 
 ## Wireframes
+Wireframes created using [Balsamiq](https://balsamiq.com/) to plan the general flow and display of Garden Diaries. Some differences may be found between the original wireframes and the finished site due to design choices made during the project process.
+
+- [Home page](src/assets/PDF/home-page.pdf)
+- [Profile](src/assets/PDF/Bio.pdf)
+- [Tasks/Plants](src/assets/PDF/Task-Plant.pdf)
+- [Forms](src/assets/PDF/form.pdf)
+- [Shoppinglist](src/assets/PDF/list.pdf)
 
 # Typography and color scheme
 
@@ -90,7 +97,6 @@ Color scheme is made up of white and different green shades to match the project
 
 ## Imagery
 Images are imported from [Pexels](https://www.pexels.com/). No result image is imported from [Sooraj MV on Dribbble](https://dribbble.com/shots/3399669-No-Results-Found). Logo is imported from [PNGEgg](https://www.pngegg.com/en/png-zfjmh). Favicon is generated from logo image through [Favicon generator](https://www.favicon-generator.org/). 
-
 
 # Features
 
@@ -215,6 +221,11 @@ Users can keep a list of things they need to purchase for their garden. The list
 
 ![Shoppinglist](src/assets/Printscreens/list.jpg)
 ![Shoppinglist edit](src/assets/Printscreens/list-edit.jpg)
+
+### Page not found
+If the user tries a url that dont exist on Garden Diaries, they are redirected to a `Page not found`, which let them redirect back to the home page. 
+
+![Page not found](src/assets/Printscreens/page-not-found.jpg)
 
 ## Future features
 These are a few examples of features that would increase the user experience for Garden Diaries that I would like to implement in the future.
