@@ -169,7 +169,7 @@ function PlantEditForm() {
         Save changes
       </Button>
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Green}}`}
+        className={`${btnStyles.Button} ${btnStyles.Green}`}
         onClick={() => history.goBack()}
       >
         Cancel
