@@ -64,7 +64,7 @@ Back to [README](README.md)
 - The Title field lets the user add a title to the post.
 - The Notes field lets the user add a text to the post.
 - The form feature a post and cancel button.
-- When the Post button is clicked the form is submitten and the data saved to the api backend. 
+- When the Post button is clicked the form is submitted and the data saved to the api backend. 
 - When the Cancel button is clicked the user is redirected to the previous page.
 
 ## Edit a diary entry 
@@ -74,7 +74,7 @@ Back to [README](README.md)
 - The form lets the user edit the title and text fields.
 - The edit form feature a save updates and cancel button.
 - When submitted by clicking the save updated button, the post data is sent to the backend API and updated.
-- When clicking the cancel button is clicked the user is redirected back to the post page. 
+- When clicking the cancel button the user is redirected back to the post page. 
 
 ## Profile
 - The user can access their own profile by clicking on their own avatar or username in the navbar, or wherever it's displayed on the website.
@@ -145,7 +145,7 @@ Back to [README](README.md)
 ### Add plants form
 - The user can access the form to post a plant from the button on the plants page.
 - The form features image upload functionality. The image upload field lets the user upload an image.
-- When an image have been added the the image upload field a button is displayed, letting the user reupload a different image if they want to change it.
+- When an image have been added to the image upload field a button is displayed, letting the user reupload a different image if they want to change it.
 - The Name field lets the user add the name of the plant.
 - The Care instructions field lets the user add a text to the post.
 - The Plant type drop down menu lets the user choose what kind of plant it is.
@@ -167,7 +167,7 @@ Back to [README](README.md)
 
 ### To-do
 - Tasks posted by the signed in user is displayed on the To-do list page, only accessible by the owner.
-- The To-do list page only display the plants posted by the user.
+- The To-do list page only display the tasks posted by the user.
 - The To-do page feature a button redirecting the user to the post task form. 
 - The task cards display the image, title and due date and a check icon to set the task as done.
 - If the task is overdue a red exclamation icon is displayed on the card.
@@ -182,12 +182,12 @@ Back to [README](README.md)
 ### Add task form
 - The user can access the form to post a task from the button on the To-do page.
 - The form features image upload functionality. The image upload field lets the user upload an image.
-- When an image have been added the the image upload field a button is displayed, letting the user reupload a different image if they want to change it.
+- When an image have been added to the image upload field a button is displayed, letting the user reupload a different image if they want to change it.
 - The Title field lets the user add a title for the task.
 - The Desciption field lets the user add a text to the post.
 - The Due date date field let the user set the due date for the task.
 - The form feature a post and cancel button.
-- When the Post button is clicked the form is submitted and the data saved to the api backend. 
+- When the Post button is clicked the form is submitted and the data saved to the API backend. 
 - When the Cancel button is clicked the user is redirected to the previous page.
 
 ### Edit task form
@@ -208,7 +208,7 @@ Back to [README](README.md)
 - The form lets the users add an item and it's quantity. 
 - The quantity of an item cannot go below 1.
 - An empty form can't be submitted, user is notified by a message if they try to submit an empty form field.
-- The form feature a add item and cancel button.
+- The form feature an add item and cancel button.
 - Submitting the form save the data to the API and update the list.
 - Clicking the cancel button empty the form fields.
 
