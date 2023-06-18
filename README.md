@@ -46,6 +46,7 @@ View live website here: [Garden Diaries](https://garden-diary.herokuapp.com/)
     - [Manual testing](#manual-testing)
         - [Browser test](#browser-test)
         - [Lighthouse](#lighthouse)
+    - [Bugs](#bugs)
 - [Deployment](#deployment)
     - [Github & Gitpod](#github--gitpod)
     - [Create a React project and app](#create-a-react-project-and-app)
@@ -324,6 +325,12 @@ Garden diaries have been tested using Chrome developer Lighthouse tester. Perfor
 To fix this in the future a library like **Workbox** could be implemented for caching images.
 
 ![Lighthouse](src/assets/Printscreens/Lighthouse.jpg)
+
+# Bugs
+Fixed bugs
+- Searchbar returns all plants, instead of plants matching the search: fixed by updating the fetchPlants function to filter by plant name.
+- Avatar image not displaying properly, broken image until user uploads their own: fixed by updating the file path in model. 
+- Plants and to-do pages return all plants/task, not just the ones posted by the user: fixed by updating the filtering method in the views in the API code.
 
 # Deployment
 The master branch of this repository has been used for the deployed version of this application.
